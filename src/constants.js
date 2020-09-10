@@ -3,4 +3,5 @@ export default {
     ORIGIN: 'ORIGIN',
     DESTINATION: 'DESTINATION',
   },
+  ASYNC_ACCESS_TOKEN: 'ASYNC_ACESS_TOKEN',
 };

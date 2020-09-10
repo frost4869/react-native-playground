@@ -96,4 +96,7 @@ const styles = StyleSheet.create({
   value: {
     fontWeight: 'normal',
   },
+  userinfo: {
+    marginTop: 8
+  }
 });
