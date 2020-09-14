@@ -34,7 +34,7 @@ export default class AppleSigninDemoScreen extends Component {
       // use credentialState response to ensure the user is authenticated
       if (credentialState === AppleAuthCredentialState.AUTHORIZED) {
         // user is authenticated
-        console.log('SIGNED IN');
+        console.log('appleAuthRequestResponse :>> ', appleAuthRequestResponse);
         this.setState({authedUser: appleAuthRequestResponse});
       }
     } catch (error) {
@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   userinfo: {
-    marginTop: 8
-  }
+    marginTop: 8,
+  },
 });

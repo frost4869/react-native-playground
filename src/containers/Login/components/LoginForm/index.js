@@ -1,12 +1,23 @@
+import {AppleButton} from '@invertase/react-native-apple-authentication';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {View} from 'react-native';
-import styles from './styles';
-import Input from '../../../../components/FormComponents/Input';
+import {Text, View} from 'react-native';
 import Button from '../../../../components/FormComponents/Button';
+import Input from '../../../../components/FormComponents/Input';
+import styles from './styles';
+import * as Yup from 'yup';
+import {yupResolver} from '@hookform/resolvers';
+import {inject, observer} from 'mobx-react';
 
-const LoginForm = ({onSubmit}) => {
-  const {handleSubmit, control} = useForm();
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required('This field is required'),
+  password: Yup.string().required('This field is required'),
+});
+
+const LoginForm = ({onSubmit, onOverrideLogin, onAppleAuth, authStore}) => {
+  const {handleSubmit, control, errors} = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
   return (
     <View style={styles.container}>
@@ -20,12 +31,14 @@ const LoginForm = ({onSubmit}) => {
             placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
+            error={errors.email}
           />
         )}
         name="email"
         rules={{required: true}}
         defaultValue=""
       />
+
       <Controller
         control={control}
         render={({onChange, onBlur, value}) => (
@@ -35,6 +48,7 @@ const LoginForm = ({onSubmit}) => {
             value={value}
             placeholder="Password"
             secureTextEntry
+            error={errors.password}
           />
         )}
         name="password"
@@ -42,13 +56,31 @@ const LoginForm = ({onSubmit}) => {
         defaultValue=""
       />
 
+      {authStore.error && (
+        <Text style={styles.errorMessage}>{authStore.error.message}</Text>
+      )}
+
+      {/* BUTTONS */}
+      <Button
+        label="Login anyway"
+        style={styles.textBtn}
+        labelStyle={styles.textLabel}
+        onPress={onOverrideLogin}
+      />
       <Button
         onPress={handleSubmit(onSubmit)}
         style={styles.loginBtn}
         label="Login"
       />
+      <Text style={styles.textBtn}>Or</Text>
+      <AppleButton
+        onPress={onAppleAuth}
+        buttonStyle={AppleButton.Style.WHITE}
+        buttonType={AppleButton.Type.SIGN_IN}
+        style={styles.appleSigninBtn}
+      />
     </View>
   );
 };
 
-export default LoginForm;
+export default inject('authStore')(observer(LoginForm));

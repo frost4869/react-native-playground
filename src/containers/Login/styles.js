@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   errorMessage: {
     textAlign: 'center',
     marginTop: 16,
+    color: 'red',
   },
   button: {
     padding: 16,

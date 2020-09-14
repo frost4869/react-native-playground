@@ -1,11 +1,17 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+  },
   input: {
     padding: 16,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    marginBottom: 16,
+    marginBottom: 8,
+  },
+  validationMessage: {
+    color: 'red',
   },
 });
 

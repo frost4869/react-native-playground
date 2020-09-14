@@ -1,17 +1,20 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {TextInput, Text, View} from 'react-native';
 import styles from './styles';
 
-const Input = ({onChange, onBlur, value, ...props}) => {
+const Input = ({onChange, onBlur, value, error, ...props}) => {
   return (
-    <TextInput
-      style={styles.input}
-      onChangeText={onChange}
-      onBlur={onBlur}
-      value={value}
-      placeholderTextColor="gray"
-      {...props}
-    />
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChange}
+        onBlur={onBlur}
+        value={value}
+        placeholderTextColor="gray"
+        {...props}
+      />
+      {error && <Text style={styles.validationMessage}>{error?.message}</Text>}
+    </View>
   );
 };
 

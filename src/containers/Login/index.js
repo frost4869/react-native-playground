@@ -1,28 +1,30 @@
+import {inject, observer} from 'mobx-react';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import Loading from '../../components/Loading';
 import LoginForm from './components/LoginForm';
 import styles from './styles';
-import {inject, observer} from 'mobx-react';
-import Button from '../../components/FormComponents/Button';
 
 const LoginScreen = ({authStore}) => {
+  const {isLoading} = authStore;
   const handleLogin = (data) => {
     authStore.login(data);
   };
   const overrideLogin = () => {
     authStore.overrideLogin();
   };
+  const handleAppleAuth = () => {
+    authStore.appleAuth();
+  };
   return (
     <View style={styles.container}>
-      <LoginForm onSubmit={handleLogin} />
-      {authStore.error && (
-        <Text style={styles.errorMessage}>{authStore.error.message}</Text>
-      )}
-      <Button
-        label="Login anyway"
-        onPress={overrideLogin}
-        style={styles.button}
+      <LoginForm
+        onSubmit={handleLogin}
+        onOverrideLogin={overrideLogin}
+        onAppleAuth={handleAppleAuth}
       />
+
+      <Loading visible={isLoading} />
     </View>
   );
 };
