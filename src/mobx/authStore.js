@@ -7,6 +7,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {action, observable} from 'mobx';
 import trackApi from '../api/trackApi';
 import constants from '../constants';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import queryString from 'query-string';
+import {Linking} from 'react-native';
 
 class AuthStore {
   constructor(rootstore) {
@@ -29,7 +32,7 @@ class AuthStore {
       });
       if (resp.ok && resp.data) {
         const {token} = resp.data;
-        AsyncStorage.setItem(constants.ASYNC_ACCESS_TOKEN, token);
+        this.setAccessToken(token);
         this.isAuthenticated = true;
         this.email = email;
       } else {
@@ -42,6 +45,8 @@ class AuthStore {
     }
   };
 
+  // HANDLE APPLE AUTHENTICATION FOR IOS 13 ONLY
+  // USING BUILT-IN SDK FOR APPLE ID AUTHENTICATION
   @action
   appleAuth = async () => {
     try {
@@ -70,7 +75,7 @@ class AuthStore {
         });
         if (resp.ok && resp.data) {
           const {token: accessToken, email} = resp.data;
-          AsyncStorage.setItem(constants.ASYNC_ACCESS_TOKEN, accessToken);
+          this.setAccessToken(accessToken);
           this.isAuthenticated = true;
           this.email = email;
         } else {
@@ -86,6 +91,40 @@ class AuthStore {
     } finally {
       this.isLoading = false;
     }
+  };
+
+  @action
+  appleOauth = async () => {
+    try {
+      this.isLoading = true;
+      this.error = undefined;
+      const url = constants.APPLE_OAUTH_ENDPOINT;
+      if (await InAppBrowser.isAvailable()) {
+        InAppBrowser.openAuth(url, constants.DEEPLINK_PREFIX, {
+          ephemeralWebSession: false,
+        }).then((resp) => {
+          if (resp.type === 'success' && resp.url) {
+            const searchString = resp.url.split(constants.DEEPLINK_PREFIX)[1];
+            const data = queryString.parse(searchString);
+            if (data && data.token && data.email) {
+              this.setAccessToken(data.token);
+              this.email = data.email;
+              this.isAuthenticated = true;
+            }
+          }
+        });
+      } else {
+        Linking.openURL(url);
+      }
+    } catch (error) {
+      this.error = error;
+    } finally {
+      this.isLoading = false;
+    }
+  };
+
+  setAccessToken = (token) => {
+    AsyncStorage.setItem(constants.ASYNC_ACCESS_TOKEN, token);
   };
 
   @action

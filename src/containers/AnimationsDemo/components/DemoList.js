@@ -9,12 +9,6 @@ const DemoList = () => {
     <ScrollView contentContainerStyle={styles.scrollView}>
       <DemoItem
         onPress={() => {
-          navigation.navigate('Animations Demo');
-        }}
-        title="Animations"
-      />
-      <DemoItem
-        onPress={() => {
           navigation.navigate('CompoundComponent');
         }}
         title="Compound Component"

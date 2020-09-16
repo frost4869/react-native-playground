@@ -12,11 +12,14 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 16,
-    backgroundColor: '#c6c6c6',
+    borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    width: '50%',
+    width: '100%',
     marginTop: 16,
     alignSelf: 'center',
+  },
+  btnLabel: {
+    color: 'black',
   },
 });
 

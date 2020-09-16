@@ -11,6 +11,7 @@ import AnimationsDemoScreen from '../containers/AnimationsDemo';
 import AppleSigninDemoScreen from '../containers/AppleSignin';
 import LoginScreen from '../containers/Login';
 import {inject, observer} from 'mobx-react';
+import DeepLink from '../containers/Deeplink';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,13 @@ const MainStack = inject('authStore')(
               }}
             />
             <Stack.Screen
+              component={DeepLink}
+              name="Deeplink"
+              options={{
+                title: 'Deeplink',
+              }}
+            />
+            <Stack.Screen
               component={AnimationsDemoScreen}
               name="AnimationsDemo"
               options={{
@@ -58,9 +66,13 @@ const MainStack = inject('authStore')(
   }),
 );
 
+const linking = {
+  prefixes: ['playground://'],
+};
+
 const Root = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <MainStack />
     </NavigationContainer>
   );
