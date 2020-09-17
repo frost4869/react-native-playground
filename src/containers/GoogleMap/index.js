@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Config from 'react-native-config';
-import {Circle, Marker, MarkerAnimated, Polyline} from 'react-native-maps';
+import {Circle, Marker, MarkerAnimated} from 'react-native-maps';
 import CurrentLocationButton from '../../components/CurrentLocationButton';
 import MapViewDirections from '../../components/CustomMapDirection';
 import CustomMapView from '../../components/CustomMapView';
@@ -21,7 +21,6 @@ const defaultLocation = {latitude: 10.7786477, longitude: 106.6997759};
 const LAT_DELTA = 0.001;
 const LONG_DELTA = 0.001;
 
-const carMarker = require('../../assets/car.png');
 const originPin = require('../../assets/origin-pin.png');
 const destinationPin = require('../../assets/dest-pin.png');
 @inject('locationStore')

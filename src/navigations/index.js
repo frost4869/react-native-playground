@@ -11,9 +11,28 @@ import AnimationsDemoScreen from '../containers/AnimationsDemo';
 import AppleSigninDemoScreen from '../containers/AppleSignin';
 import LoginScreen from '../containers/Login';
 import {inject, observer} from 'mobx-react';
-import DeepLink from '../containers/Deeplink';
+import Biometric from '../containers/Biometric';
 
 const Stack = createStackNavigator();
+
+const GoogleMapStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      component={GoogleMap}
+      name="GoogleMap"
+      options={{
+        title: 'Google Map',
+      }}
+    />
+    <Stack.Screen
+      component={LocationSuggestions}
+      name="LocationSuggestions"
+      options={{
+        title: 'Search',
+      }}
+    />
+  </Stack.Navigator>
+);
 
 const MainStack = inject('authStore')(
   observer(({authStore}) => {
@@ -39,10 +58,10 @@ const MainStack = inject('authStore')(
               }}
             />
             <Stack.Screen
-              component={DeepLink}
-              name="Deeplink"
+              component={Biometric}
+              name="Biometric"
               options={{
-                title: 'Deeplink',
+                title: 'Biometric',
               }}
             />
             <Stack.Screen
@@ -57,6 +76,34 @@ const MainStack = inject('authStore')(
               name="AppleSignin"
               options={{
                 title: 'Apple Signin',
+              }}
+            />
+            <Stack.Screen
+              component={CompoundComponentScreen}
+              name="CompoundComponent"
+              options={{
+                title: 'Compound Component',
+              }}
+            />
+            <Stack.Screen
+              component={ControlPropsScreen}
+              name="ControlProps"
+              options={{
+                title: 'Control Props',
+              }}
+            />
+            <Stack.Screen
+              component={CustomHookScreen}
+              name="CustomHook"
+              options={{
+                title: 'Custom Hook',
+              }}
+            />
+            <Stack.Screen
+              component={GoogleMapStack}
+              name="GoogleMap"
+              options={{
+                title: 'Google Map',
               }}
             />
           </React.Fragment>

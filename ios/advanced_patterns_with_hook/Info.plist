@@ -52,6 +52,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+  <key>NSFaceIDUsageDescription</key>
+  <string>Playground want to access your Faceid function</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

@@ -9,9 +9,9 @@ const DemoList = () => {
     <ScrollView contentContainerStyle={styles.scrollView}>
       <DemoItem
         onPress={() => {
-          navigation.navigate('Deeplink');
+          navigation.navigate('Biometric');
         }}
-        title="Deeplink"
+        title="Faceid / Fingerprint"
       />
       <DemoItem
         onPress={() => {
@@ -42,6 +42,12 @@ const DemoList = () => {
           navigation.navigate('AppleSignin');
         }}
         title="Apple Signin"
+      />
+      <DemoItem
+        onPress={() => {
+          navigation.navigate('GoogleMap');
+        }}
+        title="Google Map"
       />
     </ScrollView>
   );
