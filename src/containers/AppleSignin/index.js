@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   appleButton: {
-    width: '80%', // You must specify a width
+    width: '90%', // You must specify a width
     height: 45, // You must specify a height
     marginTop: 20,
   },

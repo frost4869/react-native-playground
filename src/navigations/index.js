@@ -54,7 +54,7 @@ const MainStack = inject('authStore')(
               component={HomeScreen}
               name="Home"
               options={{
-                title: 'Advanced Pattern Demo',
+                title: 'Playground',
               }}
             />
             <Stack.Screen

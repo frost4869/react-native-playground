@@ -110,7 +110,7 @@ class GoogleMap extends Component {
           destination={locationStore.getNearestPoiToDestination}
           apikey={Config.GOOGLE_MAP_TOKEN}
           strokeWidth={3}
-          strokeColor="black"
+          strokeColor="cyan"
         />
       );
     }
