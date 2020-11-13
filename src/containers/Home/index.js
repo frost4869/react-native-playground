@@ -19,7 +19,7 @@ class HomeScreen extends Component {
       <Provider value={this.props.navigation}>
         <View style={styles.container}>
           <Text style={styles.user}>
-            Logged in as: {this.props.authStore.email}
+            Logged in as: {this.props.authStore.email || 'Annoymous'}
           </Text>
           <DemoList />
         </View>

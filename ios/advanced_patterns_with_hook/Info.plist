@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>advanced_patterns_with_hook</string>
+	<string>RN Playground</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -50,10 +50,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Playground want to access your Faceid function</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-  <key>NSFaceIDUsageDescription</key>
-  <string>Playground want to access your Faceid function</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

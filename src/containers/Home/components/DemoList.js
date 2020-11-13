@@ -49,6 +49,12 @@ const DemoList = () => {
         }}
         title="Google Map"
       />
+      <DemoItem
+        onPress={() => {
+          navigation.navigate('SensorsDemo');
+        }}
+        title="Sensors"
+      />
     </ScrollView>
   );
 };

@@ -12,6 +12,8 @@ import AppleSigninDemoScreen from '../containers/AppleSignin';
 import LoginScreen from '../containers/Login';
 import {inject, observer} from 'mobx-react';
 import Biometric from '../containers/Biometric';
+import SensorDemoScreen from '../containers/Sensors';
+import GyroscopeDemo from '../containers/Sensors/Gyroscope';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +31,25 @@ const GoogleMapStack = () => (
       name="LocationSuggestions"
       options={{
         title: 'Search',
+      }}
+    />
+  </Stack.Navigator>
+);
+
+const SensorDemoStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      component={SensorDemoScreen}
+      name="Sensors"
+      options={{
+        title: 'Sensors Demo',
+      }}
+    />
+    <Stack.Screen
+      component={GyroscopeDemo}
+      name="GyroscopeDemo"
+      options={{
+        title: 'Gyroscope',
       }}
     />
   </Stack.Navigator>
@@ -105,6 +126,11 @@ const MainStack = inject('authStore')(
               options={{
                 title: 'Google Map',
               }}
+            />
+            <Stack.Screen
+              component={SensorDemoStack}
+              name="SensorsDemo"
+              options={{headerShown: false}}
             />
           </React.Fragment>
         )}
