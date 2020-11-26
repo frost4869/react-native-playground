@@ -14,6 +14,7 @@ import {inject, observer} from 'mobx-react';
 import Biometric from '../containers/Biometric';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
+import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
 
 const Stack = createStackNavigator();
 
@@ -89,7 +90,7 @@ const MainStack = inject('authStore')(
               component={AnimationsDemoScreen}
               name="AnimationsDemo"
               options={{
-                title: 'Animtions Playground',
+                title: 'Animations',
               }}
             />
             <Stack.Screen
@@ -131,6 +132,13 @@ const MainStack = inject('authStore')(
               component={SensorDemoStack}
               name="SensorsDemo"
               options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ParalaxFlatlist"
+              component={ParalaxFlatlistDemo}
+              options={{
+                title: 'Paralax Flatlist',
+              }}
             />
           </React.Fragment>
         )}

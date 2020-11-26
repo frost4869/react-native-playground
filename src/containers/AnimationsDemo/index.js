@@ -1,12 +1,19 @@
-import React, {Component, createContext} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
+import DemoItem from '../Home/components/DemoItem';
 
 export default class AnimationsDemoScreen extends Component {
   render() {
+    const {navigation} = this.props;
     return (
-      <View style={styles.container}>
-        <Text>animation demo</Text>
-      </View>
+      <ScrollView style={styles.container}>
+        <DemoItem
+          onPress={() => {
+            navigation.navigate('ParalaxFlatlist');
+          }}
+          title="Paralax Flatlist"
+        />
+      </ScrollView>
     );
   }
 }
