@@ -27,18 +27,6 @@ const DemoList = () => {
       />
       <DemoItem
         onPress={() => {
-          navigation.navigate('ControlProps');
-        }}
-        title="Control Props"
-      />
-      <DemoItem
-        onPress={() => {
-          navigation.navigate('CustomHook');
-        }}
-        title="Custom Hook"
-      />
-      <DemoItem
-        onPress={() => {
           navigation.navigate('AppleSignin');
         }}
         title="Apple Signin"

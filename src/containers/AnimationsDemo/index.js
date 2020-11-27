@@ -13,6 +13,18 @@ export default class AnimationsDemoScreen extends Component {
           }}
           title="Paralax Flatlist"
         />
+        <DemoItem
+          onPress={() => {
+            navigation.navigate('ParalaxFlatlistHorizontal');
+          }}
+          title="Paralax Flatlist Horizontal"
+        />
+        <DemoItem
+          onPress={() => {
+            navigation.navigate('AnimatedCarousel');
+          }}
+          title="Animated Carousel"
+        />
       </ScrollView>
     );
   }

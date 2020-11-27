@@ -15,6 +15,8 @@ import Biometric from '../containers/Biometric';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
 import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
+import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
+import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
 
 const Stack = createStackNavigator();
 
@@ -138,6 +140,20 @@ const MainStack = inject('authStore')(
               component={ParalaxFlatlistDemo}
               options={{
                 title: 'Paralax Flatlist',
+              }}
+            />
+            <Stack.Screen
+              name="ParalaxFlatlistHorizontal"
+              component={ParalaxFlatlistHorizontalDemo}
+              options={{
+                title: 'Paralax Horizontal',
+              }}
+            />
+            <Stack.Screen
+              name="AnimatedCarousel"
+              component={AnimatedCarousel}
+              options={{
+                title: 'Animated Carousel',
               }}
             />
           </React.Fragment>

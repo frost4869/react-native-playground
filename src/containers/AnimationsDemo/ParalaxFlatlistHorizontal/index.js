@@ -1,18 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-} from 'react-native';
+import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
+
 const IMAGE_WIDTH = SCREEN_WIDTH * 0.7;
 const IMAGE_HEIGHT = (IMAGE_WIDTH * 16) / 9;
+const LIST_ITEM_HEIGHT = 600;
 
 const data = [
   'https://source.unsplash.com/1080x1920/?nature,animal,women,puppy',
@@ -27,37 +22,39 @@ const data = [
   'https://source.unsplash.com/1080x1920/?nature,animal,women,puppy',
 ];
 
-const ParalaxFlatlistDemo = () => {
-  const scrollX = useRef(new Animated.Value(0)).current;
+const ParalaxFlatlistHorizontalDemo = () => {
+  const scrollY = useRef(new Animated.Value(0)).current;
 
   return (
     <View style={styles.container}>
       <Animated.FlatList
         data={data}
         keyExtractor={(item, index) => `${item}${index}`}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
+        showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
           {useNativeDriver: true},
         )}
+        style={{
+          height: LIST_ITEM_HEIGHT,
+        }}
         renderItem={({item, index}) => {
           const inputRange = [
-            (index - 1) * SCREEN_WIDTH,
-            index * SCREEN_WIDTH,
-            (index + 1) * SCREEN_WIDTH,
+            (index - 1) * LIST_ITEM_HEIGHT,
+            index * LIST_ITEM_HEIGHT,
+            (index + 1) * LIST_ITEM_HEIGHT,
           ];
 
-          const translateX = scrollX.interpolate({
+          const translateY = scrollY.interpolate({
             inputRange,
-            outputRange: [-SCREEN_WIDTH * 0.7, 0, SCREEN_WIDTH * 0.7],
+            outputRange: [-LIST_ITEM_HEIGHT * 0.2, 0, LIST_ITEM_HEIGHT * 0.2],
           });
 
           return (
             <View
               style={{
                 width: SCREEN_WIDTH,
+                height: LIST_ITEM_HEIGHT,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
@@ -74,6 +71,8 @@ const ParalaxFlatlistDemo = () => {
                   borderWidth: 10,
                   borderRadius: 18,
                   borderColor: '#fff',
+
+                  marginVertical: 18,
                 }}>
                 <View
                   style={{
@@ -82,7 +81,7 @@ const ParalaxFlatlistDemo = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     overflow: 'hidden',
-                    borderRadius: 10,
+                    borderRadius: 18,
                     borderColor: '#fff',
                   }}>
                   <Animated.Image
@@ -90,7 +89,7 @@ const ParalaxFlatlistDemo = () => {
                     style={[
                       styles.image,
                       {
-                        transform: [{translateX}],
+                        transform: [{translateY}],
                       },
                     ]}
                     resizeMode="cover"
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: IMAGE_WIDTH * 1.4,
-    height: IMAGE_HEIGHT,
+    height: IMAGE_HEIGHT * 1.2,
   },
   avatar: {
     width: 50,
@@ -132,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ParalaxFlatlistDemo;
+export default ParalaxFlatlistHorizontalDemo;
