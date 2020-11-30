@@ -178,6 +178,7 @@ const Paging = ({scrollX}) => {
     inputRange,
     outputRange: [-PAGING_DOT_CONTAINER_WIDTH, 0, PAGING_DOT_CONTAINER_WIDTH],
   });
+
   return (
     <View style={styles.pagingContainer}>
       <Animated.View
@@ -191,11 +192,28 @@ const Paging = ({scrollX}) => {
           transform: [{translateX}],
         }}
       />
-      {data.map((item) => (
-        <View key={item.id} style={styles.pageDotContainer}>
-          <View style={[styles.page, {backgroundColor: item.color}]} />
-        </View>
-      ))}
+      {data.map((item, index) => {
+        const dotScale = scrollX.interpolate({
+          inputRange: [
+            (index - 2) * SCREEN_WIDTH,
+            (index - 1) * SCREEN_WIDTH,
+            index * SCREEN_WIDTH,
+            (index + 1) * SCREEN_WIDTH,
+            (index + 2) * SCREEN_WIDTH,
+          ],
+          outputRange: [1, 1, 1.8, 1, 1],
+        });
+        return (
+          <View key={item.id} style={styles.pageDotContainer}>
+            <Animated.View
+              style={[
+                styles.page,
+                {backgroundColor: item.color, transform: [{scale: dotScale}]},
+              ]}
+            />
+          </View>
+        );
+      })}
     </View>
   );
 };

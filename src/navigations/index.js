@@ -1,23 +1,24 @@
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from '../containers/Home';
+import {inject, observer} from 'mobx-react';
+import React from 'react';
+import AnimationsDemoScreen from '../containers/AnimationsDemo';
+import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
+import AnimatedCarouselMovieDB from '../containers/AnimationsDemo/AnimatedCarouselMovieDB';
+import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
+import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
+import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
+import AppleSigninDemoScreen from '../containers/AppleSignin';
+import Biometric from '../containers/Biometric';
 import CompoundComponentScreen from '../containers/CompoundComponent';
 import ControlPropsScreen from '../containers/ControlProps';
 import CustomHookScreen from '../containers/CustomHook';
 import GoogleMap from '../containers/GoogleMap';
+import HomeScreen from '../containers/Home';
 import LocationSuggestions from '../containers/LocationSuggestions';
-import AnimationsDemoScreen from '../containers/AnimationsDemo';
-import AppleSigninDemoScreen from '../containers/AppleSignin';
 import LoginScreen from '../containers/Login';
-import {inject, observer} from 'mobx-react';
-import Biometric from '../containers/Biometric';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
-import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
-import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
-import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
-import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
 
 const Stack = createStackNavigator();
 
@@ -162,7 +163,14 @@ const MainStack = inject('authStore')(
               component={AnimatedFlalist1}
               options={{
                 title: 'Animated Flatlist',
-                headerShown: false
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="AnimatedCarouselMovieDB"
+              component={AnimatedCarouselMovieDB}
+              options={{
+                headerShown: false,
               }}
             />
           </React.Fragment>
