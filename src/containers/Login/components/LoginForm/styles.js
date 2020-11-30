@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   },
   textLabel: {
     textDecorationLine: 'underline',
+    margin: 16,
   },
   appleSigninBtn: {
     width: '100%',
@@ -27,6 +28,18 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginBottom: 8,
+  },
+  button: {
+    padding: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
+    width: '100%',
+    marginTop: 16,
+    alignSelf: 'center',
+  },
+  buttonLabel: {
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
 

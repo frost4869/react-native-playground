@@ -3,7 +3,6 @@ import React, {Component, createContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Button from '../../components/FormComponents/Button';
 import DemoList from './components/DemoList';
-import * as LocalAuth from 'expo-local-authentication';
 
 export const NavigationProvider = createContext();
 const {Provider} = NavigationProvider;
@@ -42,6 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 8,
   },
   user: {
     padding: 8,

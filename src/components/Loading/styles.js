@@ -13,10 +13,9 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   spinnerContainer: {
-    width: 150,
-    height: 150,
-    backgroundColor: '#c6c6c6',
-    opacity: 0.7,
+    width: 120,
+    height: 120,
+    backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,

@@ -17,6 +17,7 @@ import GyroscopeDemo from '../containers/Sensors/Gyroscope';
 import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
 import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
 import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
+import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
 
 const Stack = createStackNavigator();
 
@@ -154,6 +155,14 @@ const MainStack = inject('authStore')(
               component={AnimatedCarousel}
               options={{
                 title: 'Animated Carousel',
+              }}
+            />
+            <Stack.Screen
+              name="FlatlistAnimation1"
+              component={AnimatedFlalist1}
+              options={{
+                title: 'Animated Flatlist',
+                headerShown: false
               }}
             />
           </React.Fragment>

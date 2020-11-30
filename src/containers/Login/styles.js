@@ -10,14 +10,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
     color: 'red',
   },
-  button: {
-    padding: 16,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 5,
-    width: '100%',
-    marginTop: 16,
-    alignSelf: 'center',
-  },
   btnLabel: {
     color: 'black',
   },

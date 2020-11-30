@@ -48,7 +48,7 @@ const Biometric = ({params}) => {
 
   const handleBioAuthen = () => {
     LocalAuth.authenticateAsync({
-      promptMessage: 'Show me your face !',
+      promptMessage: 'Authentication with biometrics.',
     })
       .then((result) => {
         setIsAuthenticated(result.success);
@@ -57,22 +57,6 @@ const Biometric = ({params}) => {
       .catch((err) => {
         setBioError(err);
       });
-  };
-
-  const btnLabel = () => {
-    let type = 'FaceId';
-    switch (authType) {
-      case LocalAuth.AuthenticationType.FINGERPRINT:
-        type = 'Fingerprint';
-        break;
-      case LocalAuth.AuthenticationType.IRIS:
-        type = 'Iris scanner';
-        break;
-      default:
-        break;
-    }
-
-    return type;
   };
 
   return (
@@ -88,16 +72,10 @@ const Biometric = ({params}) => {
       </Text>
       {hardwareSupported && (
         <Button
-          label={`Use ${btnLabel()}`}
+          label="Authentication with biometric"
           style={styles.faceidBtn}
           onPress={handleBioAuthen}
           labelStyle={styles.h3}
-          icon={
-            <MaterialIcon
-              name="face-recognition"
-              style={[styles.h3, styles.icon]}
-            />
-          }
         />
       )}
       {bioError && <Text>error: {bioError}</Text>}

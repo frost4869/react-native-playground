@@ -1,14 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
-import {
-  Animated,
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {Animated, Dimensions, StyleSheet, Text, View} from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const IMAGE_WIDTH = SCREEN_WIDTH * 0.7;
@@ -204,6 +196,7 @@ const AnimatedCarousel = () => {
           [{nativeEvent: {contentOffset: {x: scrollX}}}],
           {useNativeDriver: true},
         )}
+        scrollEventThrottle={16}
       />
     </View>
   );

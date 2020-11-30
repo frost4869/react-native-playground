@@ -25,6 +25,12 @@ export default class AnimationsDemoScreen extends Component {
           }}
           title="Animated Carousel"
         />
+        <DemoItem
+          onPress={() => {
+            navigation.navigate('FlatlistAnimation1');
+          }}
+          title="Animated Flatlist 1"
+        />
       </ScrollView>
     );
   }

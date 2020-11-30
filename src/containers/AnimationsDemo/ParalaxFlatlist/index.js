@@ -1,14 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-} from 'react-native';
+import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const IMAGE_WIDTH = SCREEN_WIDTH * 0.7;
@@ -42,6 +34,7 @@ const ParalaxFlatlistDemo = () => {
           [{nativeEvent: {contentOffset: {x: scrollX}}}],
           {useNativeDriver: true},
         )}
+        // scrollEventThrottle={16}
         renderItem={({item, index}) => {
           const inputRange = [
             (index - 1) * SCREEN_WIDTH,
@@ -63,6 +56,7 @@ const ParalaxFlatlistDemo = () => {
               }}>
               <View
                 style={{
+                  elevation: 18,
                   shadowColor: '#000',
                   shadowOffset: {
                     width: 0,
