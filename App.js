@@ -19,9 +19,9 @@ const App: () => React$Node = () => {
   return (
     <Provider {...rootStore}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <SafeAreaView style={styles.container}>
-        <Root />
-      </SafeAreaView>
+      {/* <SafeAreaView style={styles.container}> */}
+      <Root />
+      {/* </SafeAreaView> */}
     </Provider>
   );
 };

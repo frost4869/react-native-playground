@@ -37,6 +37,12 @@ export default class AnimationsDemoScreen extends Component {
           }}
           title="Animated Carousel MovieDB"
         />
+        <DemoItem
+          onPress={() => {
+            navigation.navigate('LifeCycleAnimation');
+          }}
+          title="ReAnimated@alpha tryout"
+        />
       </ScrollView>
     );
   }
