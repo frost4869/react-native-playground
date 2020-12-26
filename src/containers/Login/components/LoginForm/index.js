@@ -1,26 +1,20 @@
+import {yupResolver} from '@hookform/resolvers';
 import {AppleButton} from '@invertase/react-native-apple-authentication';
+import {inject, observer} from 'mobx-react';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Platform, Text, View} from 'react-native';
+import * as Yup from 'yup';
 import Button from '../../../../components/FormComponents/Button';
 import Input from '../../../../components/FormComponents/Input';
 import styles from './styles';
-import * as Yup from 'yup';
-import {yupResolver} from '@hookform/resolvers';
-import {inject, observer} from 'mobx-react';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('This field is required'),
   password: Yup.string().required('This field is required'),
 });
 
-const LoginForm = ({
-  onSubmit,
-  onOverrideLogin,
-  onAppleAuth,
-  authStore,
-  handleAppleOauth,
-}) => {
+const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
   const {handleSubmit, control, errors} = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -38,6 +32,7 @@ const LoginForm = ({
             keyboardType="email-address"
             autoCapitalize="none"
             error={errors.email}
+            style={styles.input}
           />
         )}
         name="email"
@@ -53,8 +48,9 @@ const LoginForm = ({
             onChange={onChange}
             value={value}
             placeholder="Password"
-            secureTextEntry
+            password
             error={errors.password}
+            style={styles.input}
           />
         )}
         name="password"
@@ -84,15 +80,9 @@ const LoginForm = ({
       )}
       <Button
         label="Oauth Apple Signin"
-        style={styles.button}
-        labelStyle={styles.btnLabel}
+        style={[styles.button, styles.loginBtn]}
+        labelStyle={styles.buttonLabel}
         onPress={handleAppleOauth}
-      />
-      <Button
-        label="Don't have account ? Login anyway"
-        style={styles.textBtn}
-        labelStyle={styles.textLabel}
-        onPress={onOverrideLogin}
       />
     </View>
   );

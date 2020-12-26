@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {},
   loginBtn: {
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     padding: 16,
     borderRadius: 5,
     justifyContent: 'center',
@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   },
   textBtn: {
     marginBottom: 16,
+    fontWeight: 'bold',
     textAlign: 'center',
+    color: 'white',
   },
   textLabel: {
     textDecorationLine: 'underline',
@@ -36,9 +38,17 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 16,
     alignSelf: 'center',
+    color: 'white',
   },
   buttonLabel: {
     fontSize: 14,
+    fontWeight: '600',
+  },
+  input: {
+    borderColor: 'white',
+    backgroundColor: 'black',
+    color: 'white',
+    letterSpacing: 1,
     fontWeight: '600',
   },
 });

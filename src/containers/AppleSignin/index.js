@@ -5,7 +5,7 @@ import appleAuth, {
   AppleButton,
 } from '@invertase/react-native-apple-authentication';
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 export default class AppleSigninDemoScreen extends Component {
   constructor(props) {
@@ -62,7 +62,7 @@ export default class AppleSigninDemoScreen extends Component {
           <Text>Your device does not support Apple Signin</Text>
         )}
 
-        <View style={styles.userinfo}>
+        <ScrollView style={styles.userinfo}>
           {authedUser &&
             Object.keys(authedUser).map((key) => {
               const field = authedUser[key];
@@ -73,7 +73,7 @@ export default class AppleSigninDemoScreen extends Component {
                 </Text>
               );
             })}
-        </View>
+        </ScrollView>
       </View>
     );
   }

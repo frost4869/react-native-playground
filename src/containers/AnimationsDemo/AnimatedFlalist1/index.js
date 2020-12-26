@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
-import {Animated, Dimensions, Text, View} from 'react-native';
+import {Animated, Dimensions, SafeAreaView, Text, View} from 'react-native';
 import styles, {PAGING_DOT_CONTAINER_WIDTH, TICKER_HEIGHT} from './styles';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -148,27 +148,29 @@ const AnimatedFlalist1 = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Animated.FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        pagingEnabled
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
-          {useNativeDriver: true},
-        )}
-      />
-      <Paging scrollX={scrollX} />
-      <Ticker scrollX={scrollX} />
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={styles.container}>
+        <Animated.FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+          pagingEnabled
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {x: scrollX}}}],
+            {useNativeDriver: true},
+          )}
+        />
+        <Paging scrollX={scrollX} />
+        <Ticker scrollX={scrollX} />
 
-      <View style={styles.leftContent}>
-        <Text style={styles.leftText}>Urbanears Rålis</Text>
+        <View style={styles.leftContent}>
+          <Text style={styles.leftText}>Urbanears Rålis</Text>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

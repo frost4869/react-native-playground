@@ -1,12 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Animated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 import Button from '../../../components/FormComponents/Button';
 import ScreenHeader from '../../../components/ScreenHeader';
@@ -17,30 +23,22 @@ const AnimatedLifeCycle = ({navigation}) => {
   const [mounted, setMounted] = useState(true);
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScreenHeader
         title="ReAnimated@alpha Demo"
         onBack={() => navigation.pop()}
       />
 
       <View style={styles.container}>
-        {/* TEST MODAL */}
         <Modal isVisible={mounted} />
-      </View>
 
-      <View>
-        <ScrollView horizontal style={{padding: 4}} bounces={false}>
-          <Button
-            label={mounted ? 'Slide me out' : 'Spring me in'}
-            style={styles.button}
-            onPress={() => setMounted(!mounted)}
-          />
-        </ScrollView>
+        <Button
+          label={mounted ? 'Slide me out' : 'Spring me in'}
+          style={styles.button}
+          onPress={() => setMounted(!mounted)}
+        />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -82,7 +80,7 @@ const Modal = ({isVisible}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.5,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -91,6 +89,10 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: 'pink',
     borderRadius: 10,
+    height: 50,
+    width: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modal: {
     width: '70%',

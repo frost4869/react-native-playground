@@ -5,18 +5,17 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
-  FlatList,
   Image,
-  Pressable,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import Svg, {Rect} from 'react-native-svg';
-import Loading from '../../../components/Loading';
-import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
+import Svg, {Rect} from 'react-native-svg';
+import Icon from 'react-native-vector-icons/Feather';
+import Loading from '../../../components/Loading';
 
 const url =
   'https://api.themoviedb.org/3/movie/popular?api_key=09e4cc13c99312bf18cad8339e83bc82&language=en-US&page=1';
@@ -168,9 +167,16 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <Pressable style={styles.backBtn} onPress={() => navigation.pop()}>
-        <Icon name="chevron-left" color="#fff" size={28} />
-      </Pressable>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.backBtn}
+        onPress={() => navigation.pop()}>
+        <Icon
+          name="chevron-left"
+          color="#fff"
+          style={{fontSize: 20, width: 20, height: 20}}
+        />
+      </TouchableOpacity>
       <Loading visible={isLoading} />
       <Backdrop movies={data} scrollX={scrollX} />
       <Animated.FlatList
@@ -240,6 +246,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
+    borderWidth: 3,
+    borderColor: 'white',
   },
 });
 

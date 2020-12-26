@@ -18,6 +18,7 @@ import GoogleMap from '../containers/GoogleMap';
 import HomeScreen from '../containers/Home';
 import LocationSuggestions from '../containers/LocationSuggestions';
 import LoginScreen from '../containers/Login';
+import OnboardScreen from '../containers/Onboard';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
 
@@ -68,13 +69,18 @@ const MainStack = inject('authStore')(
     return (
       <Stack.Navigator>
         {!isAuthenticated ? (
-          <Stack.Screen
-            component={LoginScreen}
-            name="Login"
-            options={{
-              title: 'Login',
-            }}
-          />
+          <>
+            <Stack.Screen
+              component={OnboardScreen}
+              name="OnBoard"
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              component={LoginScreen}
+              name="Login"
+              options={{headerShown: false}}
+            />
+          </>
         ) : (
           <React.Fragment>
             <Stack.Screen
