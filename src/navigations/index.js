@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {inject, observer} from 'mobx-react';
 import React from 'react';
 import AnimationsDemoScreen from '../containers/AnimationsDemo';
+import FlipAnimationScreen from '../containers/AnimationsDemo/3DFlipAnimation';
 import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
 import AnimatedCarouselMovieDB from '../containers/AnimationsDemo/AnimatedCarouselMovieDB';
 import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
@@ -185,6 +186,13 @@ const MainStack = inject('authStore')(
               component={AnimatedLifeCycle}
               options={{
                 headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="3DFlipAnimation"
+              component={FlipAnimationScreen}
+              options={{
+                title: '3D Flip Animation',
               }}
             />
           </React.Fragment>
