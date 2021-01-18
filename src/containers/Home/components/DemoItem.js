@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const DemoItem = ({onPress, title}) => (
+const DemoItem = ({onPress, title, style}) => (
   <TouchableOpacity
     onPress={onPress}
-    style={styles.container}
+    style={[styles.container, style]}
     activeOpacity={0.8}>
     <Text style={styles.title}>{title}</Text>
   </TouchableOpacity>
@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderRadius: 5,
-    shadowColor: '#000',
+    borderRadius: 10,
+    shadowColor: 'gray',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 4,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
 
-    elevation: 3,
+    elevation: 8,
   },
   title: {
     fontWeight: '600',

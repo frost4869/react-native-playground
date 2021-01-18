@@ -1,15 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import Axios from 'axios';
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  Animated,
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
 import Loading from '../../../components/Loading';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
@@ -73,7 +65,9 @@ const FlipAnimationScreen = () => {
           transform: [{translateX}, {perspective: ITEM_SIZE * 1.5}, {rotateY}],
         }}>
         <View style={{borderWidth: 10, borderColor: '#000', borderRadius: 10}}>
-          <Image style={styles.image} source={{uri: imagePath}} />
+          <View style={{backgroundColor: '#000'}}>
+            <Image style={styles.image} source={{uri: imagePath}} />
+          </View>
         </View>
       </Animated.View>
     );
@@ -116,6 +110,7 @@ const styles = StyleSheet.create({
   image: {
     width: ITEM_SIZE,
     height: ITEM_SIZE * 1.8,
+    borderRadius: 10,
   },
 });
 

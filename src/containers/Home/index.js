@@ -1,6 +1,6 @@
 import {inject, observer} from 'mobx-react';
 import React, {Component, createContext} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import Button from '../../components/FormComponents/Button';
 import DemoList from './components/DemoList';
 
@@ -25,8 +25,10 @@ class HomeScreen extends Component {
         <Button
           label="Logout"
           style={styles.logoutBtn}
+          labelStyle={styles.btnLabel}
           onPress={this.handleLogout}
         />
+        <SafeAreaView />
       </Provider>
     );
   }
@@ -42,9 +44,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 8,
+    backgroundColor: 'gray',
+    borderRadius: 10,
   },
   user: {
     padding: 8,
+  },
+  btnLabel: {
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
 
