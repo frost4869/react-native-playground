@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   h1: {
     color: 'white',
     fontSize: 32,
-    fontWeight: 'bold',
+    fontWeight: '400',
     marginBottom: 16,
     letterSpacing: 1.5,
   },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 30,
     letterSpacing: 2,
-    fontWeight: 'bold',
+    fontWeight: '400',
     marginBottom: 8,
   },
   contentContainer: {

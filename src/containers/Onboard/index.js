@@ -1,8 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import {inject, observer} from 'mobx-react';
 import React from 'react';
-import {Dimensions, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, TouchableOpacity, View} from 'react-native';
 import OnBoardLogo from '../../assets/onboard_logo.svg';
+import Txt from '../../components/Txt';
 import styles from './styles';
 const {width, height} = Dimensions.get('screen');
 
@@ -14,26 +15,26 @@ const OnboardScreen = ({authStore, navigation}) => (
       style={styles.logo}
     />
     <View style={styles.contentContainer}>
-      <Text style={styles.h1}>Hi there !</Text>
-      <Text style={styles.h3}>
+      <Txt style={styles.h1}>Hi there !</Txt>
+      <Txt style={styles.h3}>
         I use this project to demonstrate how much I can achieve with React
-        Native...
-      </Text>
-      <Text style={styles.h3}>as well as trying out new approches</Text>
+        Native
+      </Txt>
+      <Txt style={styles.h3}>Also a good place to tryout new approches</Txt>
     </View>
     <View style={styles.footerContainer}>
       <TouchableOpacity
         style={styles.goBtn}
         activeOpacity={0.8}
         onPress={() => authStore.overrideLogin()}>
-        <Text style={{...styles.h3, color: 'black', marginBottom: 0}}>
+        <Txt style={{...styles.h3, color: 'black', marginBottom: 0}}>
           Let's Go
-        </Text>
+        </Txt>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.signinBtn}
         onPress={() => navigation.navigate('Login')}>
-        <Text style={{...styles.h3, marginBottom: 0}}>Sign in</Text>
+        <Txt style={{...styles.h3, marginBottom: 0}}>Sign in</Txt>
       </TouchableOpacity>
     </View>
   </View>

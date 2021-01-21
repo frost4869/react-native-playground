@@ -7,6 +7,5 @@ module.exports = {
         legacy: true,
       },
     ],
-    'react-native-reanimated/plugin',
   ],
 };

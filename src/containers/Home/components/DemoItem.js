@@ -1,12 +1,13 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import Txt from '../../../components/Txt';
 
 const DemoItem = ({onPress, title, style}) => (
   <TouchableOpacity
     onPress={onPress}
     style={[styles.container, style]}
     activeOpacity={0.8}>
-    <Text style={styles.title}>{title}</Text>
+    <Txt style={styles.title}>{title}</Txt>
   </TouchableOpacity>
 );
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   h3: {
     marginBottom: 16,
     color: 'white',
-    fontSize: 18,
+    fontSize: 14,
     letterSpacing: 1,
     lineHeight: 24,
   },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   text: {
-    marginBottom: 24
+    marginBottom: 24,
   },
   errorMessage: {
     textAlign: 'center',

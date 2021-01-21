@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
     backgroundColor: '#fff',
+    fontFamily: 'Poppins',
   },
   validationMessage: {
     color: 'red',

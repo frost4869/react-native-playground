@@ -1,7 +1,8 @@
 import {inject, observer} from 'mobx-react';
 import React, {Component, createContext} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Button from '../../components/FormComponents/Button';
+import Txt from '../../components/Txt';
 import DemoList from './components/DemoList';
 
 export const NavigationProvider = createContext();
@@ -17,9 +18,9 @@ class HomeScreen extends Component {
     return (
       <Provider value={this.props.navigation}>
         <View style={styles.container}>
-          <Text style={styles.user}>
+          <Txt style={styles.user}>
             Logged in as: {this.props.authStore.email || 'Annoymous'}
-          </Text>
+          </Txt>
           <DemoList />
         </View>
         <Button
@@ -43,12 +44,13 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 8,
+    margin: 16,
     backgroundColor: 'gray',
     borderRadius: 10,
   },
   user: {
-    padding: 8,
+    marginHorizontal: 16,
+    marginVertical: 8,
   },
   btnLabel: {
     fontWeight: 'bold',

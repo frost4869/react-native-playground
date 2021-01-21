@@ -8,7 +8,6 @@ const menus = [
   {route: 'AnimatedCarousel', title: 'Animated Carousel'},
   {route: 'FlatlistAnimation1', title: 'Product Showcase'},
   {route: 'AnimatedCarouselMovieDB', title: 'Animated Carousel MovieDB'},
-  // {route: 'LifeCycleAnimation', title: 'ReAnimated@alpha tryout'},
   {route: '3DFlipAnimation', title: '3D Flip Animation'},
 ];
 

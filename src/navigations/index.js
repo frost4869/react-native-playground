@@ -7,7 +7,6 @@ import FlipAnimationScreen from '../containers/AnimationsDemo/3DFlipAnimation';
 import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
 import AnimatedCarouselMovieDB from '../containers/AnimationsDemo/AnimatedCarouselMovieDB';
 import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
-import AnimatedLifeCycle from '../containers/AnimationsDemo/AnimatedLifeCycle';
 import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
 import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
 import AppleSigninDemoScreen from '../containers/AppleSignin';
@@ -177,13 +176,6 @@ const MainStack = inject('authStore')(
             <Stack.Screen
               name="AnimatedCarouselMovieDB"
               component={AnimatedCarouselMovieDB}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="LifeCycleAnimation"
-              component={AnimatedLifeCycle}
               options={{
                 headerShown: false,
               }}

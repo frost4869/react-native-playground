@@ -3,10 +3,11 @@ import {AppleButton} from '@invertase/react-native-apple-authentication';
 import {inject, observer} from 'mobx-react';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Platform, Text, View} from 'react-native';
+import {Platform, View} from 'react-native';
 import * as Yup from 'yup';
 import Button from '../../../../components/FormComponents/Button';
 import Input from '../../../../components/FormComponents/Input';
+import Txt from '../../../../components/Txt';
 import styles from './styles';
 
 const validationSchema = Yup.object().shape({
@@ -59,7 +60,7 @@ const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
       />
 
       {authStore.error && (
-        <Text style={styles.errorMessage}>{authStore.error.message}</Text>
+        <Txt style={styles.errorMessage}>{authStore.error.message}</Txt>
       )}
 
       {/* BUTTONS */}
@@ -69,7 +70,7 @@ const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
         labelStyle={styles.buttonLabel}
         label="Login"
       />
-      <Text style={styles.textBtn}>Or</Text>
+      <Txt style={styles.textBtn}>Or</Txt>
       {Platform.OS === 'ios' && (
         <AppleButton
           onPress={onAppleAuth}

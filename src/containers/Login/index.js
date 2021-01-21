@@ -1,17 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import {inject, observer} from 'mobx-react';
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, TouchableOpacity, View} from 'react-native';
 import Loading from '../../components/Loading';
 import LoginForm from './components/LoginForm';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './styles';
+import Txt from '../../components/Txt';
 
 const LoginScreen = ({authStore, navigation}) => {
   const {isLoading} = authStore;
@@ -40,11 +35,11 @@ const LoginScreen = ({authStore, navigation}) => {
           <Icon name="back" color="white" size={28} />
         </TouchableOpacity>
 
-        <View style={styles.text}>
-          <Text style={styles.h1}>Let's sign you in.</Text>
-          <Text style={styles.h3}>
-            Though you don't have an account, just give the design a try !
-          </Text>
+        <View style={styles.Txt}>
+          <Txt style={styles.h1}>Let's sign you in.</Txt>
+          <Txt style={styles.h3}>
+            Although you don't have an account, just give the design a try !
+          </Txt>
         </View>
 
         <LoginForm

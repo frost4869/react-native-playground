@@ -1,11 +1,12 @@
 import React from 'react';
-import {Pressable, Text} from 'react-native';
+import {Pressable} from 'react-native';
+import Txt from '../../Txt';
 import styles from './styles';
 
 const Button = ({onPress, label, labelStyle, icon, ...props}) => {
   return (
     <Pressable onPress={onPress} {...props}>
-      <Text style={[styles.label, labelStyle]}>{label}</Text>
+      <Txt style={[styles.label, labelStyle]}>{label}</Txt>
       {icon}
     </Pressable>
   );

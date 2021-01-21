@@ -72,6 +72,13 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+    <string>Poppins-Regular.ttf</string>
+    <string>Poppins-Itatic.ttf</string>
+    <string>Poppins-SemiBold.ttf</string>
+    <string>Poppins-Thin.ttf</string>
+    <string>Poppins-Light.ttf</string>
+    <string>Poppins-Bold.ttf</string>
+    <string>Poppins-Black.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
