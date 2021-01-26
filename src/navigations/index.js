@@ -65,7 +65,6 @@ const SensorDemoStack = () => (
 const MainStack = inject('authStore')(
   observer(({authStore}) => {
     const isAuthenticated = authStore.isAuthenticated;
-    console.log('isAuthenticated :>> ', isAuthenticated);
     return (
       <Stack.Navigator>
         {!isAuthenticated ? (
@@ -87,7 +86,7 @@ const MainStack = inject('authStore')(
               component={HomeScreen}
               name="Home"
               options={{
-                title: 'Playground',
+                headerShown: false,
               }}
             />
             <Stack.Screen
@@ -101,7 +100,7 @@ const MainStack = inject('authStore')(
               component={AnimationsDemoScreen}
               name="AnimationsDemo"
               options={{
-                title: 'Animations',
+                headerShown: false,
               }}
             />
             <Stack.Screen
@@ -148,7 +147,7 @@ const MainStack = inject('authStore')(
               name="ParalaxFlatlist"
               component={ParalaxFlatlistDemo}
               options={{
-                title: 'Paralax Flatlist',
+                headerShown: false,
               }}
             />
             <Stack.Screen

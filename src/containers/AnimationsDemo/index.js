@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import AnimatedList from '../../components/AnimatedListWrapper';
+import ScreenHeader from '../../components/ScreenHeader';
 import DemoItem from '../Home/components/DemoItem';
 
 const menus = [
@@ -15,17 +17,36 @@ export default class AnimationsDemoScreen extends Component {
   render() {
     const {navigation} = this.props;
     return (
-      <AnimatedList>
-        {menus.map((item, index) => (
-          <DemoItem
-            key={index}
-            onPress={() => {
-              navigation.navigate(item.route);
-            }}
-            title={item.title}
-          />
-        ))}
-      </AnimatedList>
+      <SafeAreaView style={styles.container}>
+        <ScreenHeader
+          title="Animations"
+          onBack={() => {
+            navigation.pop();
+          }}
+        />
+        <AnimatedList>
+          {menus.map((item, index) => (
+            <DemoItem
+              key={index}
+              onPress={() => {
+                navigation.navigate(item.route);
+              }}
+              title={item.title}
+            />
+          ))}
+        </AnimatedList>
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  header: {
+    marginHorizontal: 32,
+    marginTop: 16,
+  },
+});

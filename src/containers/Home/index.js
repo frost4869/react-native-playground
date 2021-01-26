@@ -2,8 +2,8 @@ import {inject, observer} from 'mobx-react';
 import React, {Component, createContext} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Button from '../../components/FormComponents/Button';
-import Txt from '../../components/Txt';
 import DemoList from './components/DemoList';
+import Header from './components/Header';
 
 export const NavigationProvider = createContext();
 const {Provider} = NavigationProvider;
@@ -17,25 +17,28 @@ class HomeScreen extends Component {
   render() {
     return (
       <Provider value={this.props.navigation}>
-        <View style={styles.container}>
-          <Txt style={styles.user}>
-            Logged in as: {this.props.authStore.email || 'Annoymous'}
-          </Txt>
-          <DemoList />
-        </View>
-        <Button
-          label="Logout"
-          style={styles.logoutBtn}
-          labelStyle={styles.btnLabel}
-          onPress={this.handleLogout}
-        />
-        <SafeAreaView />
+        <SafeAreaView style={styles.wrapper}>
+          <View style={styles.container}>
+            <Header />
+            <DemoList />
+          </View>
+          <Button
+            label="Logout"
+            style={styles.logoutBtn}
+            labelStyle={styles.btnLabel}
+            onPress={this.handleLogout}
+          />
+        </SafeAreaView>
       </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#000',
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
