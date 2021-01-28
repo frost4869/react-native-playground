@@ -9,6 +9,7 @@ const menus = [
   {route: 'FlatlistAnimation1', title: 'Product Showcase'},
   {route: 'AnimatedCarouselMovieDB', title: 'Animated Carousel MovieDB'},
   {route: '3DFlipAnimation', title: '3D Flip Animation'},
+  {route: 'AnimatedFlatlist', title: 'Animated Flatlist'},
 ];
 
 export default class AnimationsDemoScreen extends Component {

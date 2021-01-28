@@ -6,7 +6,7 @@ import AnimationsDemoScreen from '../containers/AnimationsDemo';
 import FlipAnimationScreen from '../containers/AnimationsDemo/3DFlipAnimation';
 import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
 import AnimatedCarouselMovieDB from '../containers/AnimationsDemo/AnimatedCarouselMovieDB';
-import AnimatedFlalist1 from '../containers/AnimationsDemo/AnimatedFlalist1';
+import AnimatedFlalist1 from '../containers/AnimationsDemo/ProductShowCase';
 import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
 import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
 import AppleSigninDemoScreen from '../containers/AppleSignin';
@@ -21,6 +21,7 @@ import LoginScreen from '../containers/Login';
 import OnboardScreen from '../containers/Onboard';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
+import AnimatedFlatlist from '../containers/AnimationsDemo/AnimatedFlatlist';
 
 const Stack = createStackNavigator();
 
@@ -185,6 +186,13 @@ const MainStack = inject('authStore')(
               component={FlipAnimationScreen}
               options={{
                 title: '3D Flip Animation',
+              }}
+            />
+            <Stack.Screen
+              name="AnimatedFlatlist"
+              component={AnimatedFlatlist}
+              options={{
+                title: 'Animated Flatlist',
               }}
             />
           </React.Fragment>
