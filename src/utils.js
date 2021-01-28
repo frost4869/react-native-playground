@@ -113,7 +113,7 @@ export function getCenterFromList(data = []) {
   let Y = 0.0;
   let Z = 0.0;
 
-  data.forEach(i => {
+  data.forEach((i) => {
     const _lat = (i.latitude * Math.PI) / 180;
     const _lng = (i.longitude * Math.PI) / 180;
 
@@ -144,15 +144,15 @@ export function getCenterFromList(data = []) {
   };
 }
 
-export const extractCoordinateListFromSearchResult = results => {
+export const extractCoordinateListFromSearchResult = (results) => {
   return results
-    .map(item => {
+    .map((item) => {
       if (item.location_coordinate) {
         return latlngStringToObj(item.location_coordinate);
       }
       return null;
     })
-    .filter(item => item != null);
+    .filter((item) => item != null);
 };
 
 /**
@@ -184,7 +184,7 @@ function _maxCoordinateDistance(point1, point2) {
 export function calculateDeltaFromList(centerPoint, coordinates) {
   let maxLatDelta = 0.0;
   let maxLongDelta = 0.0;
-  coordinates.forEach(coordinate => {
+  coordinates.forEach((coordinate) => {
     const distanceFromCenter = _maxCoordinateDistance(centerPoint, coordinate);
     maxLatDelta = Math.max(maxLatDelta, distanceFromCenter.latitudeDelta);
     maxLongDelta = Math.max(maxLongDelta, distanceFromCenter.longitudeDelta);
@@ -208,7 +208,7 @@ export function insertItem(array, action) {
 export function removeItem(array, action) {
   if (action.index)
     return array.filter((item, index) => index !== action.index);
-  if (action.item) return array.filter(item => item !== action.item);
+  if (action.item) return array.filter((item) => item !== action.item);
   return array;
 }
 
