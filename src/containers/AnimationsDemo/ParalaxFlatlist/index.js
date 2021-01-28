@@ -22,7 +22,11 @@ const ParalaxFlatlistDemo = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenHeader title="Paralax Flatlist" onBack={() => navigation.pop()} />
+      <ScreenHeader
+        title="Paralax Flatlist"
+        onBack={() => navigation.pop()}
+        style={styles.header}
+      />
       <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
         <Animated.FlatList
           data={data}
@@ -123,6 +127,10 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     borderRadius: 18,
     borderColor: '#fff',
+  },
+  header: {
+    marginTop: 20,
+    marginHorizontal: 16,
   },
 });
 

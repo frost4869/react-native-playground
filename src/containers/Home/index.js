@@ -1,5 +1,5 @@
 import {inject, observer} from 'mobx-react';
-import React, {Component, createContext} from 'react';
+import React, {createContext, PureComponent} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Button from '../../components/FormComponents/Button';
 import DemoList from './components/DemoList';
@@ -10,16 +10,20 @@ const {Provider} = NavigationProvider;
 
 @inject('authStore')
 @observer
-class HomeScreen extends Component {
+class HomeScreen extends PureComponent {
   handleLogout = () => {
     this.props.authStore.logout();
+  };
+
+  handleOpenSetting = () => {
+    this.props.navigation.navigate('SettingScreen');
   };
   render() {
     return (
       <Provider value={this.props.navigation}>
         <SafeAreaView style={styles.wrapper}>
           <View style={styles.container}>
-            <Header />
+            <Header onOpenSetting={this.handleOpenSetting} />
             <DemoList />
           </View>
           <Button

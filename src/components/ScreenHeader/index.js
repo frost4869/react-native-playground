@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Txt from '../Txt';
 
 const ScreenHeader = ({onBack, title, style}) => (
-  <View style={{...styles.container, style}}>
+  <View style={{...styles.container, ...style}}>
     {onBack && (
       <TouchableOpacity
         activeOpacity={0.8}

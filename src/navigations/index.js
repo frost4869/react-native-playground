@@ -21,6 +21,7 @@ import LoginScreen from '../containers/Login';
 import OnboardScreen from '../containers/Onboard';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
+import SettingScreen from '../containers/Setting';
 
 const Stack = createStackNavigator();
 
@@ -62,6 +63,62 @@ const SensorDemoStack = () => (
   </Stack.Navigator>
 );
 
+const AnimationDemoStack = () => (
+  <Stack.Navigator initialRouteName="AnimationDemo">
+    <Stack.Screen
+      component={AnimationsDemoScreen}
+      name="AnimationsDemo"
+      options={{
+        headerShown: false,
+      }}
+    />
+
+    <Stack.Screen
+      name="ParalaxFlatlist"
+      component={ParalaxFlatlistDemo}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="ParalaxFlatlistHorizontal"
+      component={ParalaxFlatlistHorizontalDemo}
+      options={{
+        title: 'Paralax Horizontal',
+      }}
+    />
+    <Stack.Screen
+      name="AnimatedCarousel"
+      component={AnimatedCarousel}
+      options={{
+        title: 'Animated Carousel',
+      }}
+    />
+    <Stack.Screen
+      name="FlatlistAnimation1"
+      component={AnimatedFlalist1}
+      options={{
+        title: 'Animated Flatlist',
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="AnimatedCarouselMovieDB"
+      component={AnimatedCarouselMovieDB}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="3DFlipAnimation"
+      component={FlipAnimationScreen}
+      options={{
+        title: '3D Flip Animation',
+      }}
+    />
+  </Stack.Navigator>
+);
+
 const MainStack = inject('authStore')(
   observer(({authStore}) => {
     const isAuthenticated = authStore.isAuthenticated;
@@ -94,13 +151,6 @@ const MainStack = inject('authStore')(
               name="Biometric"
               options={{
                 title: 'Biometric',
-              }}
-            />
-            <Stack.Screen
-              component={AnimationsDemoScreen}
-              name="AnimationsDemo"
-              options={{
-                headerShown: false,
               }}
             />
             <Stack.Screen
@@ -144,47 +194,14 @@ const MainStack = inject('authStore')(
               options={{headerShown: false}}
             />
             <Stack.Screen
-              name="ParalaxFlatlist"
-              component={ParalaxFlatlistDemo}
-              options={{
-                headerShown: false,
-              }}
+              component={AnimationDemoStack}
+              options={{headerShown: false}}
+              name="AnimationsDemo"
             />
             <Stack.Screen
-              name="ParalaxFlatlistHorizontal"
-              component={ParalaxFlatlistHorizontalDemo}
-              options={{
-                title: 'Paralax Horizontal',
-              }}
-            />
-            <Stack.Screen
-              name="AnimatedCarousel"
-              component={AnimatedCarousel}
-              options={{
-                title: 'Animated Carousel',
-              }}
-            />
-            <Stack.Screen
-              name="FlatlistAnimation1"
-              component={AnimatedFlalist1}
-              options={{
-                title: 'Animated Flatlist',
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="AnimatedCarouselMovieDB"
-              component={AnimatedCarouselMovieDB}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="3DFlipAnimation"
-              component={FlipAnimationScreen}
-              options={{
-                title: '3D Flip Animation',
-              }}
+              component={SettingScreen}
+              // options={{headerShown: false}}
+              name="SettingScreen"
             />
           </React.Fragment>
         )}

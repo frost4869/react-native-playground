@@ -23,6 +23,7 @@ export default class AnimationsDemoScreen extends Component {
           onBack={() => {
             navigation.pop();
           }}
+          style={styles.header}
         />
         <AnimatedList>
           {menus.map((item, index) => (
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   header: {
-    marginHorizontal: 32,
-    marginTop: 16,
+    marginHorizontal: 16,
+    marginTop: 20,
   },
 });
