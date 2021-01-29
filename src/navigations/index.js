@@ -15,6 +15,7 @@ import CompoundComponentScreen from '../containers/CompoundComponent';
 import ControlPropsScreen from '../containers/ControlProps';
 import CustomHookScreen from '../containers/CustomHook';
 import GoogleMap from '../containers/GoogleMap';
+import HokkaidoChallenge from '../containers/HokkaidoChallenge';
 import HomeScreen from '../containers/Home';
 import LocationSuggestions from '../containers/LocationSuggestions';
 import LoginScreen from '../containers/Login';
@@ -201,8 +202,13 @@ const MainStack = inject('authStore')(
             />
             <Stack.Screen
               component={SettingScreen}
-              // options={{headerShown: false}}
+              options={{headerShown: false}}
               name="SettingScreen"
+            />
+            <Stack.Screen
+              component={HokkaidoChallenge}
+              options={{headerShown: false}}
+              name="HokkaidoChallenge"
             />
             <Stack.Screen
               name="AnimatedFlatlist"

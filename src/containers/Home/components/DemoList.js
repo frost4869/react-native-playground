@@ -43,6 +43,12 @@ const DemoList = () => {
         }}
         title="Sensors"
       />
+      <DemoItem
+        onPress={() => {
+          navigation.navigate('HokkaidoChallenge');
+        }}
+        title="Hokkaido Challenge"
+      />
     </ScrollView>
   );
 };
