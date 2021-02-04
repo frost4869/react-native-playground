@@ -10,7 +10,6 @@ const CIRCLE_DIAMETER = Math.sqrt(
   Math.pow(BUTTON_HEIGHT, 2) + Math.pow(BUTTON_WIDTH, 2),
 );
 const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
-const RADIUS = 50;
 
 const HokkaidoChallenge = () => {
   const [centerCoord, setCenterCoord] = useState({x: 0, y: 0});

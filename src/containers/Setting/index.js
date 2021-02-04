@@ -1,66 +1,105 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useRef, useState} from 'react';
-import {Animated, Button, Easing, SafeAreaView, Text} from 'react-native';
+import {
+  Animated,
+  Easing,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
+import * as Property from 'svg-path-properties';
+import Txt from '../../components/Txt';
 import styles from './styles';
 
 const button_width = 300;
 const button_height = 100;
-const button_radius = 30;
-const progress = 30;
+const button_radius = 8;
+const progress = 80;
+const strokeWidth = 5;
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-const SettingScreen = ({navigation}) => {
-  const animatedProgress = useRef(0).current;
-  const [length, setLength] = useState(0);
-  const ref = useRef(null);
+const path = `m ${button_width / 2} 0
+    l -${button_width / 2 - button_radius} 0
+    q -${button_radius} 0 -${button_radius} ${button_radius}
+    l 0 ${button_height - button_radius * 2}
+    q 0 ${button_radius} ${button_radius} ${button_radius}
+    l ${button_width - button_radius * 2} 0
+    q ${button_radius} 0 ${button_radius} -${button_radius}
+    l 0 -${button_height - button_radius * 2}
+    q 0 -${button_radius} -${button_radius} -${button_radius}
+    z`;
 
-  const play = () => {
+const property = new Property.svgPathProperties(path);
+const lineLength = property.getTotalLength();
+
+const SettingScreen = ({navigation}) => {
+  const animatedProgress = useRef(new Animated.Value(lineLength)).current;
+  const [percent, setPercent] = useState(0);
+  const ref = useRef(null);
+  const labelRef = useRef(button_width / 2);
+
+  animatedProgress.addListener((data) => {
+    setPercent((((lineLength - data.value) * 100) / lineLength).toFixed(0));
+    const {x, y} = property.getPointAtLength(lineLength - data.value);
+    labelRef.current.setNativeProps({
+      top: y - 10,
+      left: x - 25,
+    });
+  });
+
+  useEffect(() => {
     Animated.timing(animatedProgress, {
-      toValue: progress,
-      duration: 4000,
+      toValue: lineLength - (lineLength * progress) / 100,
+      duration: 2000,
       useNativeDriver: true,
       easing: Easing.linear,
     }).start();
-  };
-
-  useEffect(() => {
-    ref.current.setNativeProps({
-      strokeDashoffset: length - (length * animatedProgress) / 100,
-    });
-  }, [animatedProgress, length]);
+  }, []);
 
   return (
     <SafeAreaView style={{...styles.container, alignItems: 'center'}}>
-      <Svg
-        width={button_width}
-        height={button_height}
-        style={{backgroundColor: 'red'}}>
-        <AnimatedPath
-          ref={ref}
-          onLayout={() => setLength(ref.current.getTotalLength())}
-          d={`m ${0 + button_width / 2} 0
-          l -${button_width / 2 - button_radius} 0
-          q -${button_radius} 0 -${button_radius} ${button_radius}
-          l 0 ${button_height - button_radius * 2}
-          q 0 ${button_radius} ${button_radius} ${button_radius}
-          l ${button_width - button_radius * 2} 0
-          q ${button_radius} 0 ${button_radius} -${button_radius}
-          l 0 -${button_height - button_radius * 2}
-          q 0 -${button_radius} -${button_radius} -${button_radius}
-          z
-          `}
-          fill="none"
-          stroke="#fff"
-          strokeWidth="3"
-          strokeDasharray={length}
-          strokeDashoffset={0}
-        />
-      </Svg>
-
-      <Button title="Play" onPress={play} />
+      <TouchableOpacity
+        onPress={() => alert('pressed')}
+        activeOpacity={0.8}
+        style={{
+          backgroundColor: 'pink',
+          borderRadius: button_radius,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Svg
+          width={button_width + strokeWidth}
+          height={button_height + strokeWidth}>
+          <AnimatedPath
+            ref={ref}
+            x={strokeWidth / 2}
+            y={strokeWidth / 2}
+            d={path}
+            fill="none"
+            stroke="#fff"
+            strokeWidth={strokeWidth}
+            strokeDasharray={lineLength}
+            strokeDashoffset={animatedProgress}
+          />
+          <View
+            ref={labelRef}
+            style={{
+              width: 50,
+              height: 20,
+              padding: 4,
+              backgroundColor: '#fff',
+              borderRadius: 5,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Txt style={{fontSize: 11, fontWeight: '400'}}>{percent} %</Txt>
+          </View>
+        </Svg>
+        <Txt style={{position: 'absolute'}}>Press plz</Txt>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
