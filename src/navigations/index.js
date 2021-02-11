@@ -24,6 +24,7 @@ import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
 import AnimatedFlatlist from '../containers/AnimationsDemo/AnimatedFlatlist';
 import SettingScreen from '../containers/Setting';
+import FacebookStoryList from '../containers/AnimationsDemo/FacebookStoryList';
 
 const Stack = createStackNavigator();
 
@@ -116,6 +117,14 @@ const AnimationDemoStack = () => (
       component={FlipAnimationScreen}
       options={{
         title: '3D Flip Animation',
+      }}
+    />
+    <Stack.Screen
+      name="FacebookStoryList"
+      component={FacebookStoryList}
+      options={{
+        title: 'FB Stories',
+        headerBackTitle: 'back',
       }}
     />
   </Stack.Navigator>
