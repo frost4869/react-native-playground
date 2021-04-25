@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import ScreenHeader from '../ScreenHeader';
 
 export default (config) => (WrappedComponent) => {
   const hocComponent = ({navigation, route, ...props}) => {
     const {title, hasBack} = config;
-    navigation.setOptions({
-      headerShown: false,
-    });
+    useEffect(() => {
+      navigation.setOptions({
+        headerShown: false,
+      });
+    }, []);
     return (
       <>
         <SafeAreaView style={{backgroundColor: '#000'}} />
@@ -31,3 +33,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
 });
+

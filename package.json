@@ -5,10 +5,12 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios:m1": "arch -x86_64 react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
     "pod": "cd ios && pod install && cd ..",
+    "pod:m1": "arch -x86_64 cd ios && pod install && cd ..",
     "xcode": "xed -b ios"
   },
   "dependencies": {
