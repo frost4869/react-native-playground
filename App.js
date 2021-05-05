@@ -6,13 +6,18 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import 'react-native-gesture-handler';
-import Root from './src/navigations';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {Provider} from 'mobx-react';
+import React from 'react';
+import {StatusBar, StyleSheet} from 'react-native';
+import 'react-native-gesture-handler';
 import RootStore from './src/mobx/rootStore';
+import Root from './src/navigations';
 
+GoogleSignin.configure({
+  webClientId:
+    '889491103641-d09pv3bmufrmonksh6jg3g4genbij096.apps.googleusercontent.com',
+});
 const rootStore = new RootStore();
 
 const App: () => React$Node = () => {

@@ -10,10 +10,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     alignSelf: 'center',
-    marginBottom: 16,
   },
   textBtn: {
-    marginBottom: 16,
+    margin: 16,
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'white',

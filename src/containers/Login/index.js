@@ -12,7 +12,8 @@ const LoginScreen = ({authStore, navigation}) => {
   const {isLoading} = authStore;
 
   const handleLogin = (data) => {
-    authStore.login(data);
+    // authStore.login(data);
+    authStore.firebaseEmailPassAuth(data.email, data.password);
   };
   const overrideLogin = () => {
     authStore.overrideLogin();
@@ -23,15 +24,18 @@ const LoginScreen = ({authStore, navigation}) => {
   const handleAppleOauth = () => {
     authStore.appleOauth();
   };
+  const handleGoogleAuth = () => {
+    authStore.firebaseLoginGoogle();
+  };
+  const handleFBAuth = () => {
+    authStore.firebaseLoginFB();
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
       <StatusBar barStyle="light-content" />
       <View style={styles.container}>
-        <ScreenHeader
-          title="Let's sign you in"
-          onBack={() => navigation.pop()}
-        />
+        <ScreenHeader title="Let's sign you in" onBack={() => navigation.pop()} />
         <Txt style={styles.h3}>
           Although you don't have an account, just give the design a try !
         </Txt>
@@ -41,6 +45,8 @@ const LoginScreen = ({authStore, navigation}) => {
           onOverrideLogin={overrideLogin}
           onAppleAuth={handleAppleAuth}
           handleAppleOauth={handleAppleOauth}
+          handleGoogleAuth={handleGoogleAuth}
+          handleFBAuth={handleFBAuth}
         />
 
         <Loading visible={isLoading} />

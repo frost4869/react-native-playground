@@ -1,5 +1,8 @@
 #import "AppDelegate.h"
 
+#import <Firebase.h>
+#import <RNGoogleSignin/RNGoogleSignin.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -37,6 +40,9 @@ static void InitializeFlipper(UIApplication *application) {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
+  if ([FIRApp defaultApp] == nil) {
+      [FIRApp configure];
+  }
   NSString *GOOGLE_MAP_TOKEN = [ReactNativeConfig envFor:@"GOOGLE_MAP_TOKEN"];
   [GMSServices provideAPIKey:GOOGLE_MAP_TOKEN];
 
@@ -77,7 +83,9 @@ static void InitializeFlipper(UIApplication *application) {
    openURL:(NSURL *)url
    options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  return [RCTLinkingManager application:application openURL:url options:options];
+  return [RNGoogleSignin application:application openURL:url options:options] ||
+        [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options] ||
+        [RCTLinkingManager application:application openURL:url options:options];
 }
 
 @end

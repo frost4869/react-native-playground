@@ -13,6 +13,7 @@ const menus = [
   {route: '3DFlipAnimation', title: '3D Flip Animation'},
   {route: 'AnimatedFlatlist', title: 'Animated Flatlist'},
   {route: 'FacebookStoryList', title: 'Facebook Stories'},
+  {route: 'AnimatedButton', title: 'Animated Button'},
 ];
 
 export default class AnimationsDemoScreen extends Component {

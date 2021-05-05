@@ -9,18 +9,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginHorizontal: 16,
   },
-  content: {
+  settingItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    flex: 1,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  slider: {
-    width: '80%',
+    margin: 16,
   },
 });
 

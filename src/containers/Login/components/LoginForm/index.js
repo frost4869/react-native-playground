@@ -3,7 +3,7 @@ import {AppleButton} from '@invertase/react-native-apple-authentication';
 import {inject, observer} from 'mobx-react';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Platform, View} from 'react-native';
+import {Platform, ScrollView, View} from 'react-native';
 import * as Yup from 'yup';
 import Button from '../../../../components/FormComponents/Button';
 import Input from '../../../../components/FormComponents/Input';
@@ -15,7 +15,14 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('This field is required'),
 });
 
-const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
+const LoginForm = ({
+  onSubmit,
+  onAppleAuth,
+  authStore,
+  handleAppleOauth,
+  handleGoogleAuth,
+  handleFBAuth,
+}) => {
   const {handleSubmit, control, errors} = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -59,9 +66,7 @@ const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
         defaultValue=""
       />
 
-      {authStore.error && (
-        <Txt style={styles.errorMessage}>{authStore.error.message}</Txt>
-      )}
+      {authStore.error && <Txt style={styles.errorMessage}>{authStore.error.message}</Txt>}
 
       {/* BUTTONS */}
       <Button
@@ -71,20 +76,34 @@ const LoginForm = ({onSubmit, onAppleAuth, authStore, handleAppleOauth}) => {
         label="Login"
       />
       <Txt style={styles.textBtn}>Or</Txt>
-      {Platform.OS === 'ios' && (
-        <AppleButton
-          onPress={onAppleAuth}
-          buttonStyle={AppleButton.Style.WHITE}
-          buttonType={AppleButton.Type.SIGN_IN}
-          style={styles.appleSigninBtn}
+      <ScrollView>
+        {Platform.OS === 'ios' && (
+          <AppleButton
+            onPress={onAppleAuth}
+            buttonStyle={AppleButton.Style.WHITE}
+            buttonType={AppleButton.Type.SIGN_IN}
+            style={styles.appleSigninBtn}
+          />
+        )}
+        <Button
+          label="Oauth Apple Signin"
+          style={[styles.button, styles.loginBtn]}
+          labelStyle={styles.buttonLabel}
+          onPress={handleAppleOauth}
         />
-      )}
-      <Button
-        label="Oauth Apple Signin"
-        style={[styles.button, styles.loginBtn]}
-        labelStyle={styles.buttonLabel}
-        onPress={handleAppleOauth}
-      />
+        <Button
+          label="Google"
+          style={[styles.button, styles.loginBtn]}
+          labelStyle={styles.buttonLabel}
+          onPress={handleGoogleAuth}
+        />
+        <Button
+          label="Facebook"
+          style={[styles.button, styles.loginBtn]}
+          labelStyle={styles.buttonLabel}
+          onPress={handleFBAuth}
+        />
+      </ScrollView>
     </View>
   );
 };

@@ -1,17 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {Dimensions, SafeAreaView, Slider, View} from 'react-native';
 import Svg, {Circle, Line} from 'react-native-svg';
+import ScreenHeader from '../../components/ScreenHeader';
+import Txt from '../../components/Txt';
 import styles from './styles';
 
-const BUTTON_WIDTH = 300;
-const BUTTON_HEIGHT = BUTTON_WIDTH - 50;
-const CIRCLE_DIAMETER = Math.sqrt(
-  Math.pow(BUTTON_HEIGHT, 2) + Math.pow(BUTTON_WIDTH, 2),
-);
+const SCREEN_WIDTH = Dimensions.get('screen').width;
+const BUTTON_WIDTH = SCREEN_WIDTH * 0.7;
+const BUTTON_HEIGHT = BUTTON_WIDTH * 0.7;
+const CIRCLE_DIAMETER = Math.sqrt(Math.pow(BUTTON_HEIGHT, 2) + Math.pow(BUTTON_WIDTH, 2));
 const CIRCLE_RADIUS = CIRCLE_DIAMETER / 2;
 
-const HokkaidoChallenge = () => {
+const HokkaidoChallenge = ({navigation}) => {
   const [centerCoord, setCenterCoord] = useState({x: 0, y: 0});
   const [buttonCoord, setButtonCoord] = useState({
     topLeft: {x: 0, y: 0},
@@ -19,6 +20,7 @@ const HokkaidoChallenge = () => {
     bottomLeft: {x: 0, y: 0},
     bottomRight: {x: 0, y: 0},
   });
+  const [pointAmount, setPointAmount] = useState(100);
 
   const onLayoutCenterPoint = (event) => {
     const {x, y} = event.nativeEvent.layout;
@@ -53,8 +55,8 @@ const HokkaidoChallenge = () => {
     return {x, y};
   };
 
-  const points = Array.from(Array(100), (e, i) => {
-    const degree = (i * 360) / 100;
+  const points = Array.from(Array(pointAmount), (e, i) => {
+    const degree = (i * 360) / pointAmount;
     const radian = (degree * Math.PI) / 180;
 
     const {topLeft, topRight, bottomLeft, bottomRight} = buttonCoord;
@@ -147,14 +149,20 @@ const HokkaidoChallenge = () => {
     });
   };
 
+  const onSliderValueChanged = (value) => {
+    setPointAmount(value);
+  };
+
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flex: 1,
-        }}>
+    <SafeAreaView style={styles.container}>
+      <ScreenHeader
+        title="Hokaido challenge"
+        onBack={() => {
+          navigation.pop();
+        }}
+        style={styles.header}
+      />
+      <View style={styles.content}>
         <View
           style={{
             width: CIRCLE_DIAMETER,
@@ -177,14 +185,11 @@ const HokkaidoChallenge = () => {
           {/* center point */}
           <View style={{position: 'absolute'}} onLayout={onLayoutCenterPoint} />
 
-          <Svg
-            width={CIRCLE_DIAMETER}
-            height={CIRCLE_DIAMETER}
-            style={{position: 'absolute'}}>
+          <Svg width={CIRCLE_DIAMETER} height={CIRCLE_DIAMETER} style={{position: 'absolute'}}>
             <Circle cx={centerCoord.x} cy={centerCoord.y} r="4" fill="red" />
             {points.map((item, index) => (
               <>
-                <Circle cx={item.x} cy={item.y} r={3} fill="red" key={index} />
+                <Circle cx={item.x} cy={item.y} r={3} fill="red" key={`c-${index}`} />
                 {item.intersectPoint && (
                   <Circle
                     cx={item.intersectPoint.x}
@@ -206,8 +211,19 @@ const HokkaidoChallenge = () => {
             ))}
           </Svg>
         </View>
+
+        {/* slider */}
+        <Txt style={styles.text}>Slide me</Txt>
+        <Slider
+          minimumValue={1}
+          maximumValue={100}
+          onValueChange={onSliderValueChanged}
+          step={1}
+          value={100}
+          style={styles.slider}
+        />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

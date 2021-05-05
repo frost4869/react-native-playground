@@ -1,14 +1,18 @@
+import firebaseAuth from '@react-native-firebase/auth';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {inject, observer} from 'mobx-react';
-import React from 'react';
+import React, {useEffect} from 'react';
 import AnimationsDemoScreen from '../containers/AnimationsDemo';
 import FlipAnimationScreen from '../containers/AnimationsDemo/3DFlipAnimation';
+import AnimatedButton from '../containers/AnimationsDemo/AnimatedButton';
 import AnimatedCarousel from '../containers/AnimationsDemo/AnimatedCarousel';
 import AnimatedCarouselMovieDB from '../containers/AnimationsDemo/AnimatedCarouselMovieDB';
-import AnimatedFlalist1 from '../containers/AnimationsDemo/ProductShowCase';
+import AnimatedFlatlist from '../containers/AnimationsDemo/AnimatedFlatlist';
+import FacebookStoryList from '../containers/AnimationsDemo/FacebookStoryList';
 import ParalaxFlatlistDemo from '../containers/AnimationsDemo/ParalaxFlatlist';
 import ParalaxFlatlistHorizontalDemo from '../containers/AnimationsDemo/ParalaxFlatlistHorizontal';
+import AnimatedFlalist1 from '../containers/AnimationsDemo/ProductShowCase';
 import AppleSigninDemoScreen from '../containers/AppleSignin';
 import Biometric from '../containers/Biometric';
 import CompoundComponentScreen from '../containers/CompoundComponent';
@@ -22,9 +26,7 @@ import LoginScreen from '../containers/Login';
 import OnboardScreen from '../containers/Onboard';
 import SensorDemoScreen from '../containers/Sensors';
 import GyroscopeDemo from '../containers/Sensors/Gyroscope';
-import AnimatedFlatlist from '../containers/AnimationsDemo/AnimatedFlatlist';
 import SettingScreen from '../containers/Setting';
-import FacebookStoryList from '../containers/AnimationsDemo/FacebookStoryList';
 
 const Stack = createStackNavigator();
 
@@ -75,7 +77,6 @@ const AnimationDemoStack = () => (
         headerShown: false,
       }}
     />
-
     <Stack.Screen
       name="ParalaxFlatlist"
       component={ParalaxFlatlistDemo}
@@ -127,6 +128,13 @@ const AnimationDemoStack = () => (
         headerBackTitle: 'back',
       }}
     />
+    <Stack.Screen
+      name="AnimatedButton"
+      component={AnimatedButton}
+      options={{
+        headerShown: false,
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -137,16 +145,8 @@ const MainStack = inject('authStore')(
       <Stack.Navigator>
         {!isAuthenticated ? (
           <>
-            <Stack.Screen
-              component={OnboardScreen}
-              name="OnBoard"
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              component={LoginScreen}
-              name="Login"
-              options={{headerShown: false}}
-            />
+            <Stack.Screen component={OnboardScreen} name="OnBoard" options={{headerShown: false}} />
+            <Stack.Screen component={LoginScreen} name="Login" options={{headerShown: false}} />
           </>
         ) : (
           <React.Fragment>
@@ -237,7 +237,14 @@ const linking = {
   prefixes: ['playground://'],
 };
 
-const Root = () => {
+const Root = ({authStore}) => {
+  useEffect(() => {
+    const firebaseAuthSubscriber = firebaseAuth().onAuthStateChanged(
+      authStore.onFirebaseAuthStateChanged,
+    );
+    return firebaseAuthSubscriber;
+  }, []);
+
   return (
     <NavigationContainer linking={linking}>
       <MainStack />
@@ -245,4 +252,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default inject('authStore')(observer(Root));

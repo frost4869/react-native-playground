@@ -4,12 +4,15 @@ import appleAuth, {
   AppleAuthRequestScope,
 } from '@invertase/react-native-apple-authentication';
 import AsyncStorage from '@react-native-community/async-storage';
+import firebaseAuth from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {action, observable} from 'mobx';
+import queryString from 'query-string';
+import {Alert, Linking} from 'react-native';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 import trackApi from '../api/trackApi';
 import constants from '../constants';
-import InAppBrowser from 'react-native-inappbrowser-reborn';
-import queryString from 'query-string';
-import {Linking} from 'react-native';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 class AuthStore {
   constructor(rootstore) {
@@ -20,6 +23,71 @@ class AuthStore {
   @observable error;
   @observable isAuthenticated = false;
   @observable email;
+
+  @action
+  onFirebaseAuthStateChanged = (user) => {
+    if (user) {
+      this.isAuthenticated = true;
+      this.email = user.displayName;
+    }
+    console.log('user :>> ', user);
+  };
+
+  @action
+  firebaseEmailPassAuth = (email, password) => {
+    firebaseAuth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((credential) => {
+        console.log('credential :>> ', credential);
+      })
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        Alert.alert('Error', error.message);
+      });
+  };
+
+  @action
+  firebaseLoginGoogle = () => {
+    GoogleSignin.signIn()
+      .then(({idToken}) => {
+        const googleCredential = firebaseAuth.GoogleAuthProvider.credential(idToken);
+
+        firebaseAuth().signInWithCredential(googleCredential);
+      })
+      .catch((error) => {
+        console.log('error :>> ', error);
+      });
+  };
+
+  @action
+  firebaseLoginFB = async () => {
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    const facebookCredential = firebaseAuth.FacebookAuthProvider.credential(data.accessToken);
+
+    firebaseAuth()
+      .signInWithCredential(facebookCredential)
+      .catch((error) => {
+        console.log('error :>> ', error);
+      });
+  };
 
   @action
   login = async ({email, password}) => {
@@ -45,7 +113,7 @@ class AuthStore {
     }
   };
 
-  // HANDLE APPLE AUTHENTICATION FOR IOS 13 ONLY
+  // HANDLE APPLE AUTHENTICATION FOR IOS >= 13 ONLY
   // USING BUILT-IN SDK FOR APPLE ID AUTHENTICATION
   @action
   appleAuth = async () => {
@@ -54,10 +122,7 @@ class AuthStore {
       this.error = undefined;
       const appleAuthRequestResponse = await appleAuth.performRequest({
         requestedOperation: AppleAuthRequestOperation.LOGIN,
-        requestedScopes: [
-          AppleAuthRequestScope.EMAIL,
-          AppleAuthRequestScope.FULL_NAME,
-        ],
+        requestedScopes: [AppleAuthRequestScope.EMAIL, AppleAuthRequestScope.FULL_NAME],
       });
       // get current authentication state for user
       // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
@@ -136,6 +201,10 @@ class AuthStore {
   logout = () => {
     this.isAuthenticated = false;
     this.email = null;
+
+    firebaseAuth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
   };
 }
 
