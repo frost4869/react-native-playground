@@ -11,7 +11,7 @@ import styles from './styles';
 const button_width = 300;
 const button_height = 100;
 const button_radius = 8;
-const progress = 80;
+const progress = 45;
 const strokeWidth = 5;
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -48,7 +48,7 @@ const AnimatedButton = ({navigation}) => {
   useEffect(() => {
     Animated.timing(animatedProgress, {
       toValue: lineLength - (lineLength * progress) / 100,
-      duration: 3000,
+      duration: 2000,
       useNativeDriver: true,
       easing: Easing.linear,
     }).start();

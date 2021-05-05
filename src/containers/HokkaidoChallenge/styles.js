@@ -11,16 +11,22 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-    justifyContent: 'space-around',
-    flex: 1,
   },
   text: {
     color: '#fff',
-    fontSize: 16,
-    textAlign: 'center',
+    fontSize: 11,
   },
   slider: {
     width: '80%',
+  },
+  headerWrapper: {
+    paddingHorizontal: 16,
+  },
+  link: {
+    color: 'white',
+    fontSize: 13,
+    fontWeight: '600',
+    textDecorationLine: 'underline',
   },
 });
 

@@ -1,16 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import faker from 'faker';
-import React from 'react';
-import {useRef} from 'react';
-import {
-  Animated,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useRef} from 'react';
+import {Animated, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Txt from '../../../components/Txt';
 
@@ -18,17 +9,13 @@ const item_width = 100;
 const item_height = 170;
 const add_button_size = 35;
 const mini_item_size = 45;
-const backdrop_border_radius = 10;
 
 const AnimatedTxt = Animated.createAnimatedComponent(Text);
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
-  TouchableOpacity,
-);
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 let data = [
   {
     id: null,
-    backdrop:
-      'https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.0-9/106172728_1653238954843178_1583807242357577196_o.jpg?_nc_cat=110&ccb=3&_nc_sid=09cbfe&_nc_ohc=-Vutmz6gYqwAX8_yKeF&_nc_ht=scontent.fsgn2-6.fna&oh=459537817f39b27f1ee850d5f4eefcee&oe=604C5345',
+    backdrop: faker.image.abstract(),
   },
 ];
 
@@ -196,10 +183,9 @@ const FacebookStoryList = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
-          {useNativeDriver: false},
-        )}
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {x: scrollX}}}], {
+          useNativeDriver: false,
+        })}
       />
       <Animated.View
         style={{

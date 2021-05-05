@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {Dimensions, SafeAreaView, Slider, View} from 'react-native';
+import {Dimensions, SafeAreaView, ScrollView, Slider, View} from 'react-native';
 import Svg, {Circle, Line} from 'react-native-svg';
 import ScreenHeader from '../../components/ScreenHeader';
 import Txt from '../../components/Txt';
+import Intro from './intro';
 import styles from './styles';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -162,7 +163,8 @@ const HokkaidoChallenge = ({navigation}) => {
         }}
         style={styles.header}
       />
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.content} bounces={false}>
+        <Intro />
         <View
           style={{
             width: CIRCLE_DIAMETER,
@@ -222,7 +224,7 @@ const HokkaidoChallenge = ({navigation}) => {
           value={100}
           style={styles.slider}
         />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
