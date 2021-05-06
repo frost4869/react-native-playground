@@ -15,6 +15,9 @@ const LoginScreen = ({authStore, navigation}) => {
     // authStore.login(data);
     authStore.firebaseEmailPassAuth(data.email, data.password);
   };
+  const handleRegister = (data) => {
+    authStore.firebaseEmailPassAuthRegister(data.email, data.password);
+  };
   const overrideLogin = () => {
     authStore.overrideLogin();
   };
@@ -30,6 +33,9 @@ const LoginScreen = ({authStore, navigation}) => {
   const handleFBAuth = () => {
     authStore.firebaseLoginFB();
   };
+  const handleTwitterAuth = () => {
+    authStore.firebaseLoginTwitter();
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
@@ -42,11 +48,13 @@ const LoginScreen = ({authStore, navigation}) => {
 
         <LoginForm
           onSubmit={handleLogin}
+          onRegister={handleRegister}
           onOverrideLogin={overrideLogin}
           onAppleAuth={handleAppleAuth}
           handleAppleOauth={handleAppleOauth}
           handleGoogleAuth={handleGoogleAuth}
           handleFBAuth={handleFBAuth}
+          handleTwitterAuth={handleTwitterAuth}
         />
 
         <Loading visible={isLoading} />

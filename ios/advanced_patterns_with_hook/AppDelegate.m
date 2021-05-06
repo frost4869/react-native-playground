@@ -3,6 +3,7 @@
 #import <Firebase.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <TwitterKit/TWTRKit.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -85,6 +86,7 @@ static void InitializeFlipper(UIApplication *application) {
 {
   return [RNGoogleSignin application:application openURL:url options:options] ||
         [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options] ||
+        [[Twitter sharedInstance] application:application openURL:url options:options] ||
         [RCTLinkingManager application:application openURL:url options:options];
 }
 

@@ -2,6 +2,15 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {},
+  haftButton: {
+    backgroundColor: 'white',
+    padding: 16,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '48%',
+    alignSelf: 'center',
+  },
   loginBtn: {
     backgroundColor: 'white',
     padding: 16,

@@ -4,15 +4,21 @@ import appleAuth, {
   AppleAuthRequestScope,
 } from '@invertase/react-native-apple-authentication';
 import AsyncStorage from '@react-native-community/async-storage';
-import firebaseAuth from '@react-native-firebase/auth';
+import firebaseAuth, {firebase} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {action, observable} from 'mobx';
 import queryString from 'query-string';
-import {Alert, Linking} from 'react-native';
+import {Alert, Linking, NativeModules} from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import trackApi from '../api/trackApi';
 import constants from '../constants';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
+
+const {RNTwitterSignIn} = NativeModules;
+RNTwitterSignIn.init(
+  'S9DsJKF31DZFw0gHDyad2EPAF',
+  'iC1O8QD3RWhhaWKEJZIP8zSv4joEgfzB0izNmIvYPNUoP5i50r',
+);
 
 class AuthStore {
   constructor(rootstore) {
@@ -23,18 +29,42 @@ class AuthStore {
   @observable error;
   @observable isAuthenticated = false;
   @observable email;
+  cachedCredential = null;
+
+  getProviderName = (provider) => {
+    switch (provider) {
+      case 'facebook.com':
+        return {
+          name: 'Facebook',
+          action: () => this.firebaseLoginFB(),
+        };
+      case 'password':
+        return {
+          name: 'Email and Password',
+        };
+      default:
+        return null;
+    }
+  };
 
   @action
   onFirebaseAuthStateChanged = (user) => {
     if (user) {
       this.isAuthenticated = true;
       this.email = user.displayName;
+
+      if (this.cachedCredential) {
+        const currentUser = firebaseAuth().currentUser;
+        currentUser.linkWithCredential(this.cachedCredential);
+
+        this.cachedCredential = null;
+      }
     }
     console.log('user :>> ', user);
   };
 
   @action
-  firebaseEmailPassAuth = (email, password) => {
+  firebaseEmailPassAuthRegister = (email, password) => {
     firebaseAuth()
       .createUserWithEmailAndPassword(email, password)
       .then((credential) => {
@@ -52,16 +82,46 @@ class AuthStore {
         Alert.alert('Error', error.message);
       });
   };
+  @action
+  firebaseEmailPassAuth = (email, password) => {
+    firebaseAuth()
+      .signInWithEmailAndPassword(email, password)
+      .then((credential) => {
+        console.log('credential :>> ', credential);
+      })
+      .catch((error) => {
+        Alert.alert('Error', error.message);
+      });
+  };
 
   @action
   firebaseLoginGoogle = () => {
     GoogleSignin.signIn()
-      .then(({idToken}) => {
+      .then(async ({idToken, user}) => {
         const googleCredential = firebaseAuth.GoogleAuthProvider.credential(idToken);
-
-        firebaseAuth().signInWithCredential(googleCredential);
+        const providers = await firebaseAuth().fetchSignInMethodsForEmail(user.email);
+        console.log('providers :>> ', providers);
+        if (providers.length > 0 && !providers.includes('google.com')) {
+          // have never signin using google => demand signin with first provider
+          this.cachedCredential = googleCredential;
+          const {name, action} = this.getProviderName(providers[0]);
+          Alert.alert('Oops', `Please signin with your ${name} first to use this signin method`, [
+            {
+              text: 'Ok',
+              onPress: action,
+              style: action ? 'default' : 'cancel',
+            },
+            {
+              text: 'Cancel',
+              style: 'cancel',
+            },
+          ]);
+        } else {
+          firebaseAuth().signInWithCredential(googleCredential);
+        }
       })
       .catch((error) => {
+        Alert.alert('Error', error.message);
         console.log('error :>> ', error);
       });
   };
@@ -84,6 +144,31 @@ class AuthStore {
 
     firebaseAuth()
       .signInWithCredential(facebookCredential)
+      .catch((error) => {
+        Alert.alert('Error', error.message);
+        console.log('error :>> ', error.code);
+      });
+  };
+
+  @action
+  firebaseLoginTwitter = async () => {
+    // Perform the login request
+    RNTwitterSignIn.logIn()
+      .then(({authToken, authTokenSecret}) => {
+        // Create a Twitter credential with the tokens
+        const twitterCredential = firebaseAuth.TwitterAuthProvider.credential(
+          authToken,
+          authTokenSecret,
+        );
+
+        // Sign-in the user with the credential
+        firebaseAuth()
+          .signInWithCredential(twitterCredential)
+          .catch((error) => {
+            Alert.alert('Error', error.message);
+            console.log('error :>> ', error);
+          });
+      })
       .catch((error) => {
         console.log('error :>> ', error);
       });
@@ -108,6 +193,7 @@ class AuthStore {
       }
     } catch (error) {
       this.error = error;
+      Alert.alert('Error', error.message);
     } finally {
       this.isLoading = false;
     }

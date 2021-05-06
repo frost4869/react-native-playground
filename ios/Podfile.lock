@@ -374,6 +374,9 @@ PODS:
     - React
   - react-native-safe-area-context (3.0.6):
     - React
+  - react-native-twitter-signin (1.1.1):
+    - React
+    - TwitterKit (~> 3.3)
   - react-native-webview (10.9.0):
     - React
   - React-RCTActionSheet (0.63.3):
@@ -466,6 +469,9 @@ PODS:
     - React
   - RNVectorIcons (7.0.0):
     - React
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
   - UMAppLoader (1.2.0)
   - UMBarCodeScannerInterface (5.2.1)
   - UMCameraInterface (5.2.1)
@@ -539,6 +545,7 @@ DEPENDENCIES:
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-twitter-signin (from `../node_modules/react-native-twitter-signin`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -563,6 +570,7 @@ DEPENDENCIES:
   - RNSensors (from `../node_modules/react-native-sensors`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - TwitterKit (~> 3.3)
   - UMAppLoader (from `../node_modules/unimodules-app-loader/ios`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
@@ -608,6 +616,8 @@ SPEC REPOS:
     - nanopb
     - OpenSSL-Universal
     - PromisesObjC
+    - TwitterCore
+    - TwitterKit
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -667,6 +677,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-twitter-signin:
+    :path: "../node_modules/react-native-twitter-signin"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-RCTActionSheet:
@@ -801,6 +813,7 @@ SPEC CHECKSUMS:
   react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-safe-area-context: e22a8ca00f758273d2408953965cb8db67da7925
+  react-native-twitter-signin: 5b737eab225a0059e6f8fe93c893c864d020b8b9
   react-native-webview: bfe5436586b214759bd5043658863549fffc8e92
   React-RCTActionSheet: 53ea72699698b0b47a6421cb1c8b4ab215a774aa
   React-RCTAnimation: 1befece0b5183c22ae01b966f5583f42e69a83c2
@@ -825,6 +838,8 @@ SPEC CHECKSUMS:
   RNSensors: e54fea720ad3e408a6225ae963300945c1263235
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
   UMAppLoader: 61049c8d55590b74e9ae1d5429bf68d96b4a2528
   UMBarCodeScannerInterface: e5e4c87797d3d01214e25cd1618866caf5d4f17f
   UMCameraInterface: 415ac060034edecacdbbaa739c223e3f276e0056
@@ -841,6 +856,6 @@ SPEC CHECKSUMS:
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: e7775d5edec4097cb2a976efbeb5345511001ab0
+PODFILE CHECKSUM: 776d81192740d5a0c4544b102c0f548013610b56
 
 COCOAPODS: 1.10.1

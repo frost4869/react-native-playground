@@ -15,8 +15,7 @@ import RootStore from './src/mobx/rootStore';
 import Root from './src/navigations';
 
 GoogleSignin.configure({
-  webClientId:
-    '889491103641-d09pv3bmufrmonksh6jg3g4genbij096.apps.googleusercontent.com',
+  webClientId: '889491103641-d09pv3bmufrmonksh6jg3g4genbij096.apps.googleusercontent.com',
 });
 const rootStore = new RootStore();
 

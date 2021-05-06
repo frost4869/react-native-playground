@@ -19,6 +19,7 @@ target 'advanced_patterns_with_hook' do
   pod 'Google-Maps-iOS-Utils'
   pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+  pod 'TwitterKit', '~> 3.3'
 
   use_native_modules!
   use_unimodules!

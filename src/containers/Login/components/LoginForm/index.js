@@ -17,11 +17,13 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = ({
   onSubmit,
+  onRegister,
   onAppleAuth,
   authStore,
   handleAppleOauth,
   handleGoogleAuth,
   handleFBAuth,
+  handleTwitterAuth,
 }) => {
   const {handleSubmit, control, errors} = useForm({
     resolver: yupResolver(validationSchema),
@@ -69,12 +71,24 @@ const LoginForm = ({
       {authStore.error && <Txt style={styles.errorMessage}>{authStore.error.message}</Txt>}
 
       {/* BUTTONS */}
-      <Button
-        onPress={handleSubmit(onSubmit)}
-        style={styles.loginBtn}
-        labelStyle={styles.buttonLabel}
-        label="Login"
-      />
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          style={styles.haftButton}
+          labelStyle={styles.buttonLabel}
+          label="Login"
+        />
+        <Button
+          onPress={handleSubmit(onRegister)}
+          style={styles.haftButton}
+          labelStyle={styles.buttonLabel}
+          label="Sign up"
+        />
+      </View>
       <Txt style={styles.textBtn}>Or</Txt>
       <ScrollView>
         {Platform.OS === 'ios' && (
@@ -102,6 +116,12 @@ const LoginForm = ({
           style={[styles.button, styles.loginBtn]}
           labelStyle={styles.buttonLabel}
           onPress={handleFBAuth}
+        />
+        <Button
+          label="Twitter"
+          style={[styles.button, styles.loginBtn]}
+          labelStyle={styles.buttonLabel}
+          onPress={handleTwitterAuth}
         />
       </ScrollView>
     </View>
