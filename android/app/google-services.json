@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "889491103641",
+    "project_id": "playground-e172c",
+    "storage_bucket": "playground-e172c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889491103641:android:cab494e98802a8a55e7d08",
+        "android_client_info": {
+          "package_name": "com.advanced_patterns_with_hook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889491103641-83lqlhfkj7d2r09llsngc38kkhof125g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.advanced_patterns_with_hook",
+            "certificate_hash": "469d32ec716077f7147b3353a430f6de2d4d4bbc"
+          }
+        },
+        {
+          "client_id": "889491103641-lmqfjakbkuotbase7969etnb8qqt82p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXPdur7e4bhfiYSN3zFMnw3wRmisk-J9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889491103641-lmqfjakbkuotbase7969etnb8qqt82p5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "889491103641-d09pv3bmufrmonksh6jg3g4genbij096.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blkboxapp.blkbox"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

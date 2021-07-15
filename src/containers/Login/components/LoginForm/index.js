@@ -3,12 +3,13 @@ import {AppleButton} from '@invertase/react-native-apple-authentication';
 import {inject, observer} from 'mobx-react';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Platform, ScrollView, View} from 'react-native';
+import {Platform, ScrollView, TouchableOpacity, View} from 'react-native';
 import * as Yup from 'yup';
 import Button from '../../../../components/FormComponents/Button';
 import Input from '../../../../components/FormComponents/Input';
 import Txt from '../../../../components/Txt';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('This field is required'),
@@ -89,41 +90,29 @@ const LoginForm = ({
           label="Sign up"
         />
       </View>
+
       <Txt style={styles.textBtn}>Or</Txt>
-      <ScrollView>
-        {Platform.OS === 'ios' && (
-          <AppleButton
-            onPress={onAppleAuth}
-            buttonStyle={AppleButton.Style.WHITE}
-            buttonType={AppleButton.Type.SIGN_IN}
-            style={styles.appleSigninBtn}
-          />
+
+      <View style={styles.socialContainer}>
+        {Platform.OS === 'ios' ? (
+          <TouchableOpacity style={styles.socialIconWrapper} onPress={onAppleAuth}>
+            <Icon name="apple" size={30} color="#000" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.socialIconWrapper} onPress={handleAppleOauth}>
+            <Icon name="apple" size={30} color="#000" />
+          </TouchableOpacity>
         )}
-        <Button
-          label="Oauth Apple Signin"
-          style={[styles.button, styles.loginBtn]}
-          labelStyle={styles.buttonLabel}
-          onPress={handleAppleOauth}
-        />
-        <Button
-          label="Google"
-          style={[styles.button, styles.loginBtn]}
-          labelStyle={styles.buttonLabel}
-          onPress={handleGoogleAuth}
-        />
-        <Button
-          label="Facebook"
-          style={[styles.button, styles.loginBtn]}
-          labelStyle={styles.buttonLabel}
-          onPress={handleFBAuth}
-        />
-        <Button
-          label="Twitter"
-          style={[styles.button, styles.loginBtn]}
-          labelStyle={styles.buttonLabel}
-          onPress={handleTwitterAuth}
-        />
-      </ScrollView>
+        <TouchableOpacity style={styles.socialIconWrapper} onPress={handleGoogleAuth}>
+          <Icon name="google" size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialIconWrapper} onPress={handleFBAuth}>
+          <Icon name="facebook-f" size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialIconWrapper} onPress={handleTwitterAuth}>
+          <Icon name="twitter" size={30} color="#000" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">advanced_patterns_with_hook</string>
+    <string name="facebook_app_id">958515024916320</string>
+    <string name="facebook_client_token">551e4696372e380c2cffde5e1ebbb1cc</string>
 </resources>

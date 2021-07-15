@@ -22,7 +22,7 @@ const rootStore = new RootStore();
 const App: () => React$Node = () => {
   return (
     <Provider {...rootStore}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#000" />
       {/* <SafeAreaView style={styles.container}> */}
       <Root />
       {/* </SafeAreaView> */}

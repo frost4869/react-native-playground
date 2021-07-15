@@ -54,10 +54,25 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: 'white',
+    borderWidth: 1,
     backgroundColor: 'black',
     color: 'white',
     letterSpacing: 1,
     fontWeight: '600',
+    fontFamily: 'Poppins',
+  },
+  socialIconWrapper: {
+    width: 45,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  socialContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 });
 

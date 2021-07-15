@@ -4,15 +4,15 @@ import appleAuth, {
   AppleAuthRequestScope,
 } from '@invertase/react-native-apple-authentication';
 import AsyncStorage from '@react-native-community/async-storage';
-import firebaseAuth, {firebase} from '@react-native-firebase/auth';
+import firebaseAuth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {action, observable} from 'mobx';
 import queryString from 'query-string';
 import {Alert, Linking, NativeModules} from 'react-native';
+import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import trackApi from '../api/trackApi';
 import constants from '../constants';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 const {RNTwitterSignIn} = NativeModules;
 RNTwitterSignIn.init(
