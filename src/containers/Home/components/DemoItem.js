@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Txt from '../../../components/Txt';
+import { border_radius } from '../../../themes/constants';
 
 const DemoItem = ({onPress, title, style}) => (
   <TouchableOpacity
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: border_radius,
     shadowColor: 'gray',
     shadowOffset: {
       width: 0,

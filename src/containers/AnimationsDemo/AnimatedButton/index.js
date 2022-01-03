@@ -6,6 +6,7 @@ import Svg, {Path} from 'react-native-svg';
 import * as Property from 'svg-path-properties';
 import ScreenHeader from '../../../components/ScreenHeader';
 import Txt from '../../../components/Txt';
+import {border_radius} from '../../../themes/constants';
 import styles from './styles';
 
 const button_width = 300;
@@ -36,7 +37,7 @@ const AnimatedButton = ({navigation}) => {
   const ref = useRef(null);
   const labelRef = useRef(button_width / 2);
 
-  animatedProgress.addListener((data) => {
+  animatedProgress.addListener(data => {
     setPercent((((lineLength - data.value) * 100) / lineLength).toFixed(0));
     const {x, y} = property.getPointAtLength(lineLength - data.value);
     labelRef.current.setNativeProps({
@@ -92,7 +93,7 @@ const AnimatedButton = ({navigation}) => {
                 height: 20,
                 padding: 4,
                 backgroundColor: '#fff',
-                borderRadius: 5,
+                borderRadius: border_radius,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>

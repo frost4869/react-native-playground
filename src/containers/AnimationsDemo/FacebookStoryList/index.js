@@ -2,6 +2,7 @@
 import faker from 'faker';
 import React, {useRef} from 'react';
 import {Animated, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Txt from '../../../components/Txt';
 
@@ -53,7 +54,7 @@ const FacebookStoryList = () => {
           padding: 8,
           justifyContent: 'space-between',
         }}>
-        <Image
+        <FastImage
           style={{
             width: item_width,
             height: item_height,
@@ -81,7 +82,7 @@ const FacebookStoryList = () => {
             borderColor: '#fff',
             borderWidth: 2,
           }}>
-          <Image source={{uri: item.avatar}} style={{width: 30, height: 30}} />
+          <FastImage source={{uri: item.avatar}} style={{width: 30, height: 30}} />
         </View>
         <Txt
           style={{
@@ -178,7 +179,7 @@ const FacebookStoryList = () => {
       }}>
       <Animated.FlatList
         data={data}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         renderItem={renderItem}
         horizontal
         showsHorizontalScrollIndicator={false}

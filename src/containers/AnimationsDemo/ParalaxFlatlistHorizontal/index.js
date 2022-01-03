@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
 import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
@@ -31,10 +32,9 @@ const ParalaxFlatlistHorizontalDemo = () => {
         data={data}
         keyExtractor={(item, index) => `${item}${index}`}
         showsVerticalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: true},
-        )}
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollY}}}], {
+          useNativeDriver: true,
+        })}
         style={{
           height: LIST_ITEM_HEIGHT,
         }}
@@ -95,7 +95,7 @@ const ParalaxFlatlistHorizontalDemo = () => {
                     resizeMode="cover"
                   />
                 </View>
-                <Image
+                <FastImage
                   source={{uri: 'https://source.unsplash.com/50x50/?girl'}}
                   style={styles.avatar}
                   resizeMode="cover"

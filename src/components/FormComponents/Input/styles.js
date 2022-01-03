@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { border_radius } from '../../../themes/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 16,
     borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 5,
+    borderRadius: border_radius,
     backgroundColor: '#fff',
     fontFamily: 'Poppins',
   },

@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native';
+import { border_radius } from '../../../../themes/constants';
 
 const styles = StyleSheet.create({
   container: {},
   haftButton: {
     backgroundColor: 'white',
     padding: 16,
-    borderRadius: 5,
+    borderRadius: border_radius,
     justifyContent: 'center',
     alignItems: 'center',
     width: '48%',
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   loginBtn: {
     backgroundColor: 'white',
     padding: 16,
-    borderRadius: 5,
+    borderRadius: border_radius,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 16,
     borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 5,
+    borderRadius: border_radius,
     width: '100%',
     marginTop: 16,
     alignSelf: 'center',

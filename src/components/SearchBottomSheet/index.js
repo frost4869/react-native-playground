@@ -3,15 +3,12 @@ import {Text, TouchableOpacity, View, Image} from 'react-native';
 import styles from './styles';
 import {inject, observer} from 'mobx-react';
 import constants from '../../constants';
+import FastImage from 'react-native-fast-image';
 
 const originPin = require('../../assets/origin-pin.png');
 const destinationPin = require('../../assets/dest-pin.png');
 
-const SearchLocationBottomSheet = ({
-  navigation,
-  locationStore,
-  locationSuggestionStore,
-}) => {
+const SearchLocationBottomSheet = ({navigation, locationStore, locationSuggestionStore}) => {
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>Where to go ?</Text>
@@ -34,10 +31,8 @@ const SearchLocationBottomSheet = ({
     return (
       <View style={styles.contentContainer}>
         <View style={styles.inputContainer}>
-          <Image source={originPin} style={styles.pins} />
-          <TouchableOpacity
-            onPress={handleSearchOrigin}
-            style={styles.inputBtn}>
+          <FastImage source={originPin} style={styles.pins} />
+          <TouchableOpacity onPress={handleSearchOrigin} style={styles.inputBtn}>
             {origin && origin.address ? (
               <Text>{origin.address}</Text>
             ) : (
@@ -46,10 +41,8 @@ const SearchLocationBottomSheet = ({
           </TouchableOpacity>
         </View>
         <View style={styles.inputContainer}>
-          <Image source={destinationPin} style={styles.pins} />
-          <TouchableOpacity
-            onPress={handleSearchDestination}
-            style={styles.inputBtn}>
+          <FastImage source={destinationPin} style={styles.pins} />
+          <TouchableOpacity onPress={handleSearchDestination} style={styles.inputBtn}>
             {destination && destination.address ? (
               <Text>{destination.address}</Text>
             ) : (
@@ -69,6 +62,7 @@ const SearchLocationBottomSheet = ({
   );
 };
 
-export default inject('locationStore', 'locationSuggestionStore')(
-  observer(SearchLocationBottomSheet),
-);
+export default inject(
+  'locationStore',
+  'locationSuggestionStore',
+)(observer(SearchLocationBottomSheet));

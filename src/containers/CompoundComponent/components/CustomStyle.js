@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, StyleSheet, Image} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Expandable from '../../../components/Expandable/Expandable';
 
 const CustomStyleExpandable = () => (
@@ -9,7 +10,7 @@ const CustomStyleExpandable = () => (
       <Expandable.Icon style={styles.icon} />
     </Expandable.Header>
     <Expandable.Content style={styles.content}>
-      <Image source={{uri: 'https://picsum.photos/200'}} style={styles.image} />
+      <FastImage source={{uri: 'https://picsum.photos/200'}} style={styles.image} />
     </Expandable.Content>
   </Expandable>
 );

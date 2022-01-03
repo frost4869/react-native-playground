@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button from '../../components/FormComponents/Button';
+import { border_radius } from '../../themes/constants';
 
 const Biometric = ({params}) => {
   const [hardwareSupported, setHardwareSupported] = useState(false);
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#fff',
     borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 5,
+    borderRadius: border_radius,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

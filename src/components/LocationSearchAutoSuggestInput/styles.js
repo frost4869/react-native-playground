@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {border_radius} from '../../themes/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginHorizontal: 8,
     backgroundColor: '#fff',
-    borderRadius: 4,
+    borderRadius: border_radius,
     color: '#000',
   },
 });

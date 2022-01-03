@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import Svg, {Rect} from 'react-native-svg';
 import Icon from 'react-native-vector-icons/Feather';
@@ -20,8 +21,8 @@ import Loading from '../../../components/Loading';
 const url =
   'https://api.themoviedb.org/3/movie/popular?api_key=09e4cc13c99312bf18cad8339e83bc82&language=en-US&page=1';
 
-const imageUrl = 'http://image.tmdb.org/t/p/w342';
-const posterUrl = 'http://image.tmdb.org/t/p/original';
+const imageUrl = 'https://image.tmdb.org/t/p/w342';
+const posterUrl = 'https://image.tmdb.org/t/p/w1280';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 const ITEM_SIZE = parseInt(SCREEN_WIDTH * 0.72);
@@ -56,16 +57,10 @@ function Backdrop({movies, scrollX}) {
             style={{
               transform: [{translateX}],
             }}>
-            <Rect
-              x="0"
-              y="0"
-              width={SCREEN_WIDTH}
-              height={SCREEN_HEIGHT}
-              fill="red"
-            />
+            <Rect x="0" y="0" width={SCREEN_WIDTH} height={SCREEN_HEIGHT} fill="red" />
           </AnimatedSvg>
         }>
-        <Image
+        <FastImage
           source={{uri: imagePath}}
           resizeMode="cover"
           style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.6}}
@@ -100,13 +95,9 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    Axios.get(url).then((response) => {
+    Axios.get(url).then(response => {
       if (response && response.data) {
-        setData([
-          {id: 'left-space'},
-          ...response.data.results,
-          {id: 'right-space'},
-        ]);
+        setData([{id: 'left-space'}, ...response.data.results, {id: 'right-space'}]);
         setLoading(false);
       }
     });
@@ -120,11 +111,7 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
     const {poster_path, title, overview} = item;
     const imagePath = `${imageUrl}${poster_path}`;
 
-    const inputRange = [
-      (index - 2) * ITEM_SIZE,
-      (index - 1) * ITEM_SIZE,
-      index * ITEM_SIZE,
-    ];
+    const inputRange = [(index - 2) * ITEM_SIZE, (index - 1) * ITEM_SIZE, index * ITEM_SIZE];
 
     const translateY = scrollX.interpolate({
       inputRange,
@@ -154,7 +141,7 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
             borderRadius: 20,
             alignItems: 'center',
           }}>
-          <Image source={{uri: imagePath}} style={styles.image} />
+          <FastImage source={{uri: imagePath}} style={styles.image} />
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.overview} numberOfLines={3}>
             {overview}
@@ -167,22 +154,15 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
-      <TouchableOpacity
-        activeOpacity={0.8}
-        style={styles.backBtn}
-        onPress={() => navigation.pop()}>
-        <Icon
-          name="chevron-left"
-          color="#fff"
-          style={{fontSize: 20, width: 20, height: 20}}
-        />
+      <TouchableOpacity activeOpacity={0.8} style={styles.backBtn} onPress={() => navigation.pop()}>
+        <Icon name="chevron-left" color="#fff" style={{fontSize: 20, width: 20, height: 20}} />
       </TouchableOpacity>
       <Loading visible={isLoading} />
       <Backdrop movies={data} scrollX={scrollX} />
       <Animated.FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         horizontal
         snapToInterval={ITEM_SIZE}
         snapToAlignment="start"
@@ -190,10 +170,9 @@ const AnimatedCarouselMovieDB = ({navigation}) => {
         pagingEnabled
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
-          {useNativeDriver: true},
-        )}
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {x: scrollX}}}], {
+          useNativeDriver: true,
+        })}
         scrollEventThrottle={16}
       />
     </View>

@@ -1,15 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useRef} from 'react';
-import {
-  Animated,
-  Dimensions,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {Animated, Dimensions, Image, SafeAreaView, StyleSheet, View} from 'react-native';
 import faker from 'faker';
 import ScreenHeader from '../../../components/ScreenHeader';
+import FastImage from 'react-native-fast-image';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const IMAGE_WIDTH = SCREEN_WIDTH * 0.7;
@@ -34,10 +28,9 @@ const ParalaxFlatlistDemo = ({navigation}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          onScroll={Animated.event(
-            [{nativeEvent: {contentOffset: {x: scrollX}}}],
-            {useNativeDriver: true},
-          )}
+          onScroll={Animated.event([{nativeEvent: {contentOffset: {x: scrollX}}}], {
+            useNativeDriver: true,
+          })}
           scrollEventThrottle={16}
           renderItem={({item, index}) => {
             const inputRange = [
@@ -80,7 +73,7 @@ const ParalaxFlatlistDemo = ({navigation}) => {
                       resizeMode="cover"
                     />
                   </View>
-                  <Image
+                  <FastImage
                     source={{uri: 'https://source.unsplash.com/50x50/?girl'}}
                     style={styles.avatar}
                     resizeMode="cover"
